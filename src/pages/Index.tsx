@@ -18,15 +18,22 @@ const Index = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-led-dark">
+    <div className="flex min-h-screen bg-led-dark overflow-hidden">
+      <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-background to-background pointer-events-none"></div>
+      
       <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
       
-      <div className={`flex-1 transition-all duration-300 ${
+      <div className={`flex-1 transition-all duration-300 relative z-10 ${
         sidebarCollapsed ? "ml-20" : "ml-64"
       }`}>
         <Header sidebarCollapsed={sidebarCollapsed} />
         
         <main className="p-6">
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold mb-2 led-gradient-text">Dashboard Analytics</h1>
+            <p className="text-white/70">Monitoramento em tempo real de visitantes</p>
+          </div>
+          
           <DeviceFilter />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">

@@ -87,4 +87,33 @@
   .dashboard-card:hover {
     @apply shadow-purple-500/10;
   }
+
+  /* Enhanced card styles */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl;
+  }
+  
+  .gradient-border {
+    @apply relative before:absolute before:inset-0 before:-z-10 before:p-[1px] before:rounded-xl before:bg-led-gradient-3 before:opacity-50;
+  }
+
+  .glow-effect {
+    @apply relative after:absolute after:inset-0 after:-z-10 after:rounded-xl after:opacity-70 after:blur-xl after:bg-led-gradient-1;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  .text-glow {
+    @apply drop-shadow-[0_0_8px_rgba(217,70,239,0.5)];
+  }
+  
+  .stats-card {
+    @apply bg-gradient-to-br from-primary/30 via-primary/20 to-secondary/30 backdrop-blur-xl border border-white/10 shadow-xl;
+  }
+  
+  .chart-card {
+    @apply bg-gradient-to-br from-muted/90 via-card/80 to-card/90 backdrop-blur-xl border border-white/5 shadow-xl;
+  }
 }
