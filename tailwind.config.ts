@@ -70,6 +70,8 @@ export default {
 					dark: '#1A1F2C',
 					background: '#221F26',
 					text: '#ffffff',
+					orange: '#FF9F4A',
+					yellow: '#FFCD4A',
 				},
 			},
 			borderRadius: {
@@ -111,9 +113,9 @@ export default {
 				'fade-in': 'fade-in 0.3s ease-out'
 			},
 			backgroundImage: {
-				'led-gradient-1': 'linear-gradient(102.3deg, #D946EF 5.9%, #9b87f5 64%, #6E59A5 89%)',
-				'led-gradient-2': 'linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%)',
-				'led-gradient-3': 'linear-gradient(90deg, #D946EF 0%, #9b87f5 100%)',
+				'led-gradient-1': 'linear-gradient(102.3deg, #FF9F4A 5.9%, #9b87f5 54%, #D946EF 89%)',
+				'led-gradient-2': 'linear-gradient(to right, #FF9F4A 0%, #D946EF 100%)',
+				'led-gradient-3': 'linear-gradient(90deg, #FF9F4A 0%, #9b87f5 50%, #D946EF 100%)',
 				'led-card': 'linear-gradient(180deg, rgba(155, 135, 245, 0.2) 0%, rgba(217, 70, 239, 0.1) 100%)',
 				'led-sidebar': 'linear-gradient(180deg, #1A1F2C 0%, #221F26 100%)',
 			},
