@@ -77,13 +77,24 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
 
       <div className="p-4 mt-auto">
         <div className={cn(
-          "flex items-center justify-center p-2 rounded-lg bg-led-gradient-1 text-white font-medium transition-all",
-          collapsed ? "w-12 h-12" : ""
+          "flex items-center p-2 rounded-lg bg-led-gradient-1 text-white font-medium transition-all",
+          collapsed ? "justify-center" : "justify-between"
         )}>
           {collapsed ? (
-            <span className="text-lg font-bold">AI</span>
+            <img 
+              src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
+              alt="Global IA Logo" 
+              className="h-8 w-auto"
+            />
           ) : (
-            <span>THE LED Analytics</span>
+            <>
+              <span className="text-sm">Desenvolvido por</span>
+              <img 
+                src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
+                alt="Global IA Logo" 
+                className="h-7 w-auto ml-2"
+              />
+            </>
           )}
         </div>
       </div>
