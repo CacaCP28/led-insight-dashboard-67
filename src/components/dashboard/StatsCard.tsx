@@ -22,15 +22,18 @@ const StatsCard: React.FC<StatsCardProps> = ({
   className,
 }) => {
   return (
-    <div className={cn("led-card p-5 flex flex-col animate-fade-in", className)}>
+    <div className={cn(
+      "led-card p-5 flex flex-col animate-fade-in bg-gradient-to-br from-primary/40 to-secondary/40 backdrop-blur-sm shadow-lg border-none",
+      className
+    )}>
       <div className="flex items-start justify-between mb-4">
-        <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
-        <div className="led-icon-container">
+        <h3 className="text-sm font-medium text-white">{title}</h3>
+        <div className="led-icon-container bg-led-gradient-1 shadow-md">
           <Icon size={20} />
         </div>
       </div>
       <div className="mt-auto">
-        <div className="text-2xl font-bold">{value}</div>
+        <div className="text-2xl font-bold text-white">{value}</div>
         {trend && (
           <div className="flex items-center mt-2">
             <span
@@ -70,7 +73,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
               )}
               <span className="ml-1">{trend.value}%</span>
             </span>
-            <span className="text-xs ml-1 text-muted-foreground">vs. última semana</span>
+            <span className="text-xs ml-1 text-white/80">vs. última semana</span>
           </div>
         )}
       </div>

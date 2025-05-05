@@ -15,10 +15,10 @@ const ChartCard: React.FC<ChartCardProps> = ({
 }) => {
   return (
     <div className={cn(
-      "led-card p-5 animate-fade-in", 
+      "led-card p-5 animate-fade-in bg-gradient-to-br from-muted to-card shadow-lg border-none", 
       className
     )}>
-      <h3 className="text-sm font-medium text-muted-foreground mb-4">{title}</h3>
+      <h3 className="text-sm font-medium text-white mb-4">{title}</h3>
       {children}
     </div>
   );

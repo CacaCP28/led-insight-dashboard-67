@@ -58,7 +58,7 @@
   }
 
   .led-card {
-    @apply rounded-xl bg-card border border-border/30 backdrop-blur-sm;
+    @apply rounded-xl backdrop-blur-sm;
   }
 
   .led-gradient-text {
@@ -66,6 +66,25 @@
   }
 
   .led-icon-container {
-    @apply flex items-center justify-center w-12 h-12 rounded-lg bg-led-gradient-1 text-white;
+    @apply flex items-center justify-center w-12 h-12 rounded-lg text-white;
+  }
+}
+
+/* New gradient utilities */
+@layer utilities {
+  .bg-card-gradient-1 {
+    @apply bg-gradient-to-br from-led-purple/40 to-led-pink/40;
+  }
+  
+  .bg-card-gradient-2 {
+    @apply bg-gradient-to-br from-led-pink/30 to-led-purple/30;
+  }
+  
+  .dashboard-card {
+    @apply backdrop-blur-sm shadow-xl border-purple-500/20 transition-all duration-300;
+  }
+  
+  .dashboard-card:hover {
+    @apply shadow-purple-500/10;
   }
 }
