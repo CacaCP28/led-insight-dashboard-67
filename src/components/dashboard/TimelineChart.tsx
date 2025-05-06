@@ -50,6 +50,8 @@ const TimelineChart = () => {
               borderRadius: '8px',
               color: '#fff' 
             }}
+            itemStyle={{ color: '#fff' }}
+            labelStyle={{ color: '#fff' }}
           />
           <Legend 
             formatter={(value) => <span style={{ color: '#ffffff' }}>{value}</span>}
