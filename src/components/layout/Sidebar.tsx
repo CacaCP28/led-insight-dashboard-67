@@ -6,7 +6,7 @@ import {
   BarChart3, 
   HardDrive, 
   Settings,
-  RouteUp,
+  Route,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -60,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
           collapsed={collapsed}
         />
         <NavItem
-          icon={<RouteUp size={20} />}
+          icon={<Route size={20} />}
           label="Jornada do Cliente"
           route="/jornada"
           collapsed={collapsed}
