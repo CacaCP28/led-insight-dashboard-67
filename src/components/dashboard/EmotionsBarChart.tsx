@@ -31,14 +31,14 @@ const EmotionsBarChart = () => {
             tickFormatter={(value) => `${value}%`}
             axisLine={false}
             tickLine={false} 
-            tick={{ fill: "rgba(255,255,255,0.7)" }}
+            tick={{ fill: "#ffffff" }}
           />
           <YAxis 
             dataKey="name" 
             type="category"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "rgba(255,255,255,0.7)" }}
+            tick={{ fill: "#ffffff" }}
           />
           <Tooltip 
             formatter={(value) => [`${value}%`, 'Percentual']}
@@ -49,7 +49,9 @@ const EmotionsBarChart = () => {
               color: '#fff' 
             }}
           />
-          <Legend />
+          <Legend 
+            formatter={(value) => <span style={{ color: '#ffffff' }}>{value}</span>}
+          />
           <Bar 
             dataKey="value" 
             name="Percentual" 

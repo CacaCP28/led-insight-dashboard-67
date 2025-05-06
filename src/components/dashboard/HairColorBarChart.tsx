@@ -28,13 +28,13 @@ const HairColorBarChart = () => {
             dataKey="name" 
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "rgba(255,255,255,0.7)" }}
+            tick={{ fill: "#ffffff" }}
           />
           <YAxis 
             tickFormatter={(value) => `${value}%`}
             axisLine={false}
             tickLine={false} 
-            tick={{ fill: "rgba(255,255,255,0.7)" }}
+            tick={{ fill: "#ffffff" }}
           />
           <Tooltip 
             formatter={(value) => [`${value}%`, 'Percentual']}
@@ -45,7 +45,9 @@ const HairColorBarChart = () => {
               color: '#fff' 
             }}
           />
-          <Legend />
+          <Legend 
+            formatter={(value) => <span style={{ color: '#ffffff' }}>{value}</span>}
+          />
           <Bar 
             dataKey="value" 
             name="Percentual" 

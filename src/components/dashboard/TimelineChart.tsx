@@ -36,12 +36,12 @@ const TimelineChart = () => {
             dataKey="time" 
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "rgba(255,255,255,0.7)" }}
+            tick={{ fill: "#ffffff" }}
           />
           <YAxis 
             axisLine={false}
             tickLine={false} 
-            tick={{ fill: "rgba(255,255,255,0.7)" }}
+            tick={{ fill: "#ffffff" }}
           />
           <Tooltip 
             contentStyle={{ 
@@ -51,7 +51,9 @@ const TimelineChart = () => {
               color: '#fff' 
             }}
           />
-          <Legend />
+          <Legend 
+            formatter={(value) => <span style={{ color: '#ffffff' }}>{value}</span>}
+          />
           <defs>
             <linearGradient id="colorVisitors" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#9b87f5" stopOpacity={0.8}/>

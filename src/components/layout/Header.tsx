@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -21,27 +22,35 @@ const Header: React.FC<HeaderProps> = ({ sidebarCollapsed }) => {
   const formattedDate = format(today, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR });
 
   return (
-    <header className={`flex items-center justify-between h-16 px-6 border-b border-border/30 transition-all duration-300 ease-in-out ${
+    <header className={cn(
+      "flex items-center justify-between h-16 px-6 border-b border-border/30 transition-all duration-300 ease-in-out sticky top-0 z-10 backdrop-blur-sm bg-led-dark/80",
       sidebarCollapsed ? "ml-20" : "ml-64"
-    }`}>
+    )}>
       <div className="flex items-center">
-        <h1 className="text-xl font-bold mr-6">Dashboard</h1>
+        <h1 className="text-xl font-bold mr-6 animate-fade-in">Dashboard</h1>
         <div className="flex items-center text-muted-foreground">
-          <CalendarIcon size={18} className="mr-2" />
+          <CalendarIcon size={18} className="mr-2 animate-pulse" />
           <span>{formattedDate}</span>
         </div>
       </div>
       
       <div className="flex items-center gap-4">
+        <div className="hidden sm:flex items-center gap-2">
+          <span className="size-2 rounded-full bg-green-500 animate-pulse"></span>
+          <span className="text-sm text-muted-foreground">Online</span>
+        </div>
+        
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="flex items-center gap-2">
-              <User size={18} />
-              <span>Ana Silva</span>
-              <ChevronDown size={16} />
+            <Button variant="outline" className="flex items-center gap-2 group">
+              <div className="size-7 rounded-full bg-gradient-to-br from-led-purple to-led-pink flex items-center justify-center overflow-hidden">
+                <User size={16} className="text-white" />
+              </div>
+              <span className="hidden sm:inline">Ana Silva</span>
+              <ChevronDown size={16} className="group-data-[state=open]:rotate-180 transition-transform duration-200" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="w-56 animate-fade-in">
             <DropdownMenuItem>
               <User size={16} className="mr-2" />
               <span>Perfil</span>

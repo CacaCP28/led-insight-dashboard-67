@@ -105,12 +105,39 @@ export default {
 						opacity: '1',
 						transform: 'translateY(0)'
 					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-5px)'
+					}
+				},
+				'pulse-light': {
+					'0%, 100%': {
+						opacity: '0.6'
+					},
+					'50%': {
+						opacity: '1'
+					}
+				},
+				'shimmer': {
+					'0%': {
+						backgroundPosition: '-200% 0'
+					},
+					'100%': {
+						backgroundPosition: '200% 0'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.3s ease-out'
+				'fade-in': 'fade-in 0.3s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'pulse-light': 'pulse-light 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'shimmer': 'shimmer 2s linear infinite'
 			},
 			backgroundImage: {
 				'led-gradient-1': 'linear-gradient(102.3deg, #FF9F4A 5.9%, #9b87f5 54%, #D946EF 89%)',
@@ -118,6 +145,7 @@ export default {
 				'led-gradient-3': 'linear-gradient(90deg, #FF9F4A 0%, #9b87f5 50%, #D946EF 100%)',
 				'led-card': 'linear-gradient(180deg, rgba(155, 135, 245, 0.2) 0%, rgba(217, 70, 239, 0.1) 100%)',
 				'led-sidebar': 'linear-gradient(180deg, #1A1F2C 0%, #221F26 100%)',
+				'shimmer': 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],

@@ -38,7 +38,9 @@ const GenderPieChart = () => {
               color: '#fff' 
             }}
           />
-          <Legend />
+          <Legend 
+            formatter={(value) => <span style={{ color: '#ffffff' }}>{value}</span>}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>

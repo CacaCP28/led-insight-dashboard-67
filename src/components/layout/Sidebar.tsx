@@ -22,26 +22,26 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
     )}>
       <div className="flex items-center justify-between h-16 px-4 border-b border-border/30">
         <div className={cn("flex items-center", collapsed ? "justify-center w-full" : "")}>
-          {!collapsed && (
-            <div className="flex items-center">
-              <img 
-                src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
-                alt="THE LED Logo" 
-                className="h-8 w-auto mr-2"
-              />
-            </div>
-          )}
-          {collapsed && (
+          {!collapsed ? (
             <img 
               src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
               alt="THE LED Logo" 
               className="h-8 w-auto"
             />
+          ) : (
+            <img 
+              src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
+              alt="THE LED Logo" 
+              className="h-8 w-auto transition-all duration-300"
+            />
           )}
         </div>
         <button 
           onClick={() => setCollapsed(!collapsed)}
-          className="p-2 rounded-lg hover:bg-muted transition-colors duration-200"
+          className={cn(
+            "p-2 rounded-lg hover:bg-muted transition-colors duration-200",
+            collapsed && "absolute right-0 -mr-4 bg-background shadow-lg border border-border/30 rounded-full"
+          )}
         >
           {collapsed ? (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,14 +87,14 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
 
       <div className="p-4 mt-auto">
         <div className={cn(
-          "flex items-center p-2 rounded-lg bg-gradient-to-r from-orange-400 via-purple-500 to-pink-500 text-white font-medium transition-all",
+          "flex items-center p-2 rounded-lg bg-gradient-to-r from-led-orange via-led-purple to-led-pink text-white font-medium transition-all",
           collapsed ? "justify-center" : "justify-between"
         )}>
           {collapsed ? (
             <img 
               src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
               alt="Global IA Logo" 
-              className="h-6 w-auto"
+              className="h-6 w-auto transition-all duration-300"
             />
           ) : (
             <>
@@ -131,14 +131,21 @@ const NavItem: React.FC<NavItemProps> = ({
     <Link
       to={route}
       className={cn(
-        "flex items-center gap-3 p-3 rounded-lg transition-colors duration-200",
+        "flex items-center gap-3 p-3 rounded-lg transition-all duration-200 group",
         active 
           ? "bg-primary/20 text-primary" 
           : "hover:bg-primary/10 text-foreground"
       )}
     >
-      <span>{icon}</span>
-      {!collapsed && <span className="font-medium">{label}</span>}
+      <span className="relative">
+        {icon}
+        {active && (
+          <span className="absolute -inset-1 rounded-full animate-pulse opacity-70 bg-primary/30 -z-10"></span>
+        )}
+      </span>
+      {!collapsed && (
+        <span className="font-medium transition-all duration-300">{label}</span>
+      )}
     </Link>
   );
 };
