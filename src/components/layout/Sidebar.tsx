@@ -6,6 +6,7 @@ import {
   BarChart3, 
   HardDrive, 
   Settings,
+  RouteUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -57,7 +58,12 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
           label="Dashboard"
           route="/"
           collapsed={collapsed}
-          active={true}
+        />
+        <NavItem
+          icon={<RouteUp size={20} />}
+          label="Jornada do Cliente"
+          route="/jornada"
+          collapsed={collapsed}
         />
         <NavItem
           icon={<BarChart3 size={20} />}
@@ -110,19 +116,22 @@ const NavItem: React.FC<NavItemProps> = ({
   collapsed,
   active
 }) => {
+  // Check if this route is active by comparing with current location
+  const isActive = window.location.pathname === route;
+  
   return (
     <Link
       to={route}
       className={cn(
         "flex items-center gap-3 p-3 rounded-lg transition-all duration-200 group",
-        active 
+        isActive || active
           ? "bg-primary/20 text-primary" 
           : "hover:bg-primary/10 text-foreground"
       )}
     >
       <span className="relative">
         {icon}
-        {active && (
+        {(isActive || active) && (
           <span className="absolute -inset-1 rounded-full animate-pulse opacity-70 bg-primary/30 -z-10"></span>
         )}
       </span>
