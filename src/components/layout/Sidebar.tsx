@@ -22,17 +22,11 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
     )}>
       <div className="flex items-center justify-between h-16 px-4 border-b border-border/30">
         <div className={cn("flex items-center", collapsed ? "justify-center w-full" : "")}>
-          {!collapsed ? (
+          {!collapsed && (
             <img 
               src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
               alt="THE LED Logo" 
               className="h-8 w-auto"
-            />
-          ) : (
-            <img 
-              src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
-              alt="THE LED Logo" 
-              className="h-8 w-auto transition-all duration-300"
             />
           )}
         </div>
@@ -86,27 +80,16 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
       </nav>
 
       <div className="p-4 mt-auto">
-        <div className={cn(
-          "flex items-center p-2 rounded-lg bg-gradient-to-r from-led-orange via-led-purple to-led-pink text-white font-medium transition-all",
-          collapsed ? "justify-center" : "justify-between"
-        )}>
-          {collapsed ? (
+        {!collapsed && (
+          <div className="flex items-center justify-between p-2 rounded-lg bg-gradient-to-r from-led-orange via-led-purple to-led-pink text-white font-medium transition-all">
+            <span className="text-xs">Desenvolvido por</span>
             <img 
               src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
               alt="Global IA Logo" 
-              className="h-6 w-auto transition-all duration-300"
+              className="h-5 w-auto ml-2"
             />
-          ) : (
-            <>
-              <span className="text-xs">Desenvolvido por</span>
-              <img 
-                src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
-                alt="Global IA Logo" 
-                className="h-5 w-auto ml-2"
-              />
-            </>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </aside>
   );
