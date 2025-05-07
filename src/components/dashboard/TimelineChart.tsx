@@ -104,11 +104,103 @@ const rangeData = {
   ]
 };
 
-const TimelineChart = () => {
-  const { date, dateRange, dateFilterType, filtersApplied } = useFilters();
+// Device-specific data
+const deviceData = {
+  "camera-1": [
+    { time: "8:00", visitors: 5 },
+    { time: "9:00", visitors: 8 },
+    { time: "10:00", visitors: 12 },
+    { time: "11:00", visitors: 15 },
+    { time: "12:00", visitors: 18 },
+    { time: "13:00", visitors: 16 },
+    { time: "14:00", visitors: 14 },
+    { time: "15:00", visitors: 17 },
+    { time: "16:00", visitors: 19 },
+    { time: "17:00", visitors: 15 },
+    { time: "18:00", visitors: 12 },
+    { time: "19:00", visitors: 9 },
+    { time: "20:00", visitors: 6 },
+  ],
+  "camera-2": [
+    { time: "8:00", visitors: 3 },
+    { time: "9:00", visitors: 6 },
+    { time: "10:00", visitors: 9 },
+    { time: "11:00", visitors: 12 },
+    { time: "12:00", visitors: 14 },
+    { time: "13:00", visitors: 13 },
+    { time: "14:00", visitors: 10 },
+    { time: "15:00", visitors: 12 },
+    { time: "16:00", visitors: 14 },
+    { time: "17:00", visitors: 12 },
+    { time: "18:00", visitors: 9 },
+    { time: "19:00", visitors: 6 },
+    { time: "20:00", visitors: 4 },
+  ],
+  "camera-3": [
+    { time: "8:00", visitors: 2 },
+    { time: "9:00", visitors: 4 },
+    { time: "10:00", visitors: 6 },
+    { time: "11:00", visitors: 9 },
+    { time: "12:00", visitors: 10 },
+    { time: "13:00", visitors: 9 },
+    { time: "14:00", visitors: 8 },
+    { time: "15:00", visitors: 11 },
+    { time: "16:00", visitors: 12 },
+    { time: "17:00", visitors: 10 },
+    { time: "18:00", visitors: 8 },
+    { time: "19:00", visitors: 7 },
+    { time: "20:00", visitors: 5 },
+  ],
+  "camera-4": [
+    { time: "8:00", visitors: 2 },
+    { time: "9:00", visitors: 3 },
+    { time: "10:00", visitors: 5 },
+    { time: "11:00", visitors: 7 },
+    { time: "12:00", visitors: 8 },
+    { time: "13:00", visitors: 7 },
+    { time: "14:00", visitors: 6 },
+    { time: "15:00", visitors: 7 },
+    { time: "16:00", visitors: 8 },
+    { time: "17:00", visitors: 6 },
+    { time: "18:00", visitors: 5 },
+    { time: "19:00", visitors: 4 },
+    { time: "20:00", visitors: 3 },
+  ],
+};
 
-  // Generate data based on selected date/range
+// Multiple devices data
+const multiDeviceData = [
+  { time: "8:00", visitors: 7 },
+  { time: "9:00", visitors: 11 },
+  { time: "10:00", visitors: 16 },
+  { time: "11:00", visitors: 21 },
+  { time: "12:00", visitors: 25 },
+  { time: "13:00", visitors: 22 },
+  { time: "14:00", visitors: 19 },
+  { time: "15:00", visitors: 24 },
+  { time: "16:00", visitors: 27 },
+  { time: "17:00", visitors: 23 },
+  { time: "18:00", visitors: 18 },
+  { time: "19:00", visitors: 15 },
+  { time: "20:00", visitors: 10 },
+];
+
+const TimelineChart = () => {
+  const { date, dateRange, dateFilterType, selectedDevices, filtersApplied } = useFilters();
+
+  // Generate data based on selected date/range and devices
   const data = useMemo(() => {
+    // Handle device selection first
+    if (selectedDevices.length === 1 && selectedDevices[0] !== "todos") {
+      // Single device selected
+      const deviceId = selectedDevices[0];
+      return deviceData[deviceId] || baseData;
+    } else if (selectedDevices.length > 1) {
+      // Multiple devices selected
+      return multiDeviceData;
+    }
+    
+    // If "todos" is selected or date filtering is applied
     if (dateFilterType === "single") {
       const dateKey = format(date, "yyyy-MM-dd");
       return alternativeData[dateKey] || baseData;
@@ -124,7 +216,7 @@ const TimelineChart = () => {
     }
     
     return baseData;
-  }, [date, dateRange, dateFilterType, filtersApplied]);
+  }, [date, dateRange, dateFilterType, filtersApplied, selectedDevices]);
 
   return (
     <div style={{ width: "100%", height: 300 }}>

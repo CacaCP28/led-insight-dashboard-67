@@ -35,11 +35,68 @@ const alternativeData = {
   // Add more dates if needed
 };
 
-const GenderAgeComparisonChart = () => {
-  const { date, dateRange, dateFilterType, filtersApplied } = useFilters();
+// Device-specific data
+const deviceData = {
+  "camera-1": [
+    { name: '18-24', masculino: 50, feminino: 70 },
+    { name: '25-34', masculino: 65, feminino: 60 },
+    { name: '35-44', masculino: 80, feminino: 45 },
+    { name: '45-54', masculino: 55, feminino: 40 },
+    { name: '55-64', masculino: 35, feminino: 30 },
+    { name: '65+', masculino: 20, feminino: 15 }
+  ],
+  "camera-2": [
+    { name: '18-24', masculino: 40, feminino: 45 },
+    { name: '25-34', masculino: 55, feminino: 50 },
+    { name: '35-44', masculino: 65, feminino: 40 },
+    { name: '45-54', masculino: 45, feminino: 35 },
+    { name: '55-64', masculino: 30, feminino: 20 },
+    { name: '65+', masculino: 15, feminino: 10 }
+  ],
+  "camera-3": [
+    { name: '18-24', masculino: 30, feminino: 40 },
+    { name: '25-34', masculino: 45, feminino: 50 },
+    { name: '35-44', masculino: 55, feminino: 45 },
+    { name: '45-54', masculino: 40, feminino: 30 },
+    { name: '55-64', masculino: 25, feminino: 20 },
+    { name: '65+', masculino: 15, feminino: 10 }
+  ],
+  "camera-4": [
+    { name: '18-24', masculino: 25, feminino: 15 },
+    { name: '25-34', masculino: 35, feminino: 20 },
+    { name: '35-44', masculino: 45, feminino: 25 },
+    { name: '45-54', masculino: 30, feminino: 20 },
+    { name: '55-64', masculino: 20, feminino: 15 },
+    { name: '65+', masculino: 10, feminino: 5 }
+  ],
+};
 
-  // Generate synthetic data based on selected date
+// Multiple devices data
+const multiDeviceData = [
+  { name: '18-24', masculino: 80, feminino: 95 },
+  { name: '25-34', masculino: 110, feminino: 90 },
+  { name: '35-44', masculino: 135, feminino: 75 },
+  { name: '45-54', masculino: 95, feminino: 65 },
+  { name: '55-64', masculino: 60, feminino: 45 },
+  { name: '65+', masculino: 35, feminino: 20 }
+];
+
+const GenderAgeComparisonChart = () => {
+  const { date, dateRange, dateFilterType, selectedDevices, filtersApplied } = useFilters();
+
+  // Generate synthetic data based on selected date and devices
   const data = useMemo(() => {
+    // Handle device selection first
+    if (selectedDevices.length === 1 && selectedDevices[0] !== "todos") {
+      // Single device selected
+      const deviceId = selectedDevices[0];
+      return deviceData[deviceId] || baseData;
+    } else if (selectedDevices.length > 1) {
+      // Multiple devices selected
+      return multiDeviceData;
+    }
+    
+    // If "todos" is selected or date filtering is applied
     const dateKey = format(date, "yyyy-MM-dd");
     
     // Check if we have predefined data for this date
@@ -62,7 +119,7 @@ const GenderAgeComparisonChart = () => {
     
     // Default to base data
     return baseData;
-  }, [date, dateRange, dateFilterType, filtersApplied]); // Include filtersApplied to force re-render
+  }, [date, dateRange, dateFilterType, filtersApplied, selectedDevices]); // Include selectedDevices to re-render
 
   return (
     <div style={{ width: '100%', height: 300 }}>

@@ -27,14 +27,50 @@ const alternativeData = {
   // Add more dates if needed
 };
 
+// Device-specific data
+const deviceData = {
+  "camera-1": [
+    { name: "Masculino", value: 62 },
+    { name: "Feminino", value: 38 }
+  ],
+  "camera-2": [
+    { name: "Masculino", value: 53 },
+    { name: "Feminino", value: 47 }
+  ],
+  "camera-3": [
+    { name: "Masculino", value: 48 },
+    { name: "Feminino", value: 52 }
+  ],
+  "camera-4": [
+    { name: "Masculino", value: 66 },
+    { name: "Feminino", value: 34 }
+  ],
+};
+
+// Multiple devices data
+const multiDeviceData = [
+  { name: "Masculino", value: 56 },
+  { name: "Feminino", value: 44 }
+];
+
 const COLORS = ["#9b87f5", "#D946EF"];
 
 const GenderPieChart = () => {
-  const { date, dateRange, dateFilterType, filtersApplied } = useFilters();
+  const { date, dateRange, dateFilterType, selectedDevices, filtersApplied } = useFilters();
 
-  // Generate synthetic data based on selected date
+  // Generate synthetic data based on selected date and devices
   const data = useMemo(() => {
-    const today = new Date("2025-05-07"); // Use a fixed date for consistent demo
+    // Handle device selection first
+    if (selectedDevices.length === 1 && selectedDevices[0] !== "todos") {
+      // Single device selected
+      const deviceId = selectedDevices[0];
+      return deviceData[deviceId] || baseData;
+    } else if (selectedDevices.length > 1) {
+      // Multiple devices selected
+      return multiDeviceData;
+    }
+    
+    // If "todos" is selected or date filtering is applied
     const dateKey = format(date, "yyyy-MM-dd");
     
     // Check if we have predefined data for this date
@@ -61,7 +97,7 @@ const GenderPieChart = () => {
     
     // Default to base data
     return baseData;
-  }, [date, dateRange, dateFilterType, filtersApplied]); // Include filtersApplied to force re-render
+  }, [date, dateRange, dateFilterType, filtersApplied, selectedDevices]); // Include selectedDevices to update on device change
 
   return (
     <div style={{ width: "100%", height: 250 }}>

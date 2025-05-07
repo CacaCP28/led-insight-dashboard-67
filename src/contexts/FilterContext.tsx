@@ -113,6 +113,66 @@ const rangeStats = {
   }
 };
 
+// Device-specific stats
+const deviceStats = {
+  "camera-1": {
+    totalVisitors: {
+      value: "426",
+      trend: { value: 14, isPositive: true }
+    },
+    totalContacts: {
+      value: "198",
+      trend: { value: 10, isPositive: true }
+    },
+    averageTime: {
+      value: "16 min",
+      trend: { value: 3, isPositive: true }
+    }
+  },
+  "camera-2": {
+    totalVisitors: {
+      value: "321",
+      trend: { value: 8, isPositive: true }
+    },
+    totalContacts: {
+      value: "142",
+      trend: { value: 5, isPositive: false }
+    },
+    averageTime: {
+      value: "12 min",
+      trend: { value: 7, isPositive: true }
+    }
+  },
+  "camera-3": {
+    totalVisitors: {
+      value: "289",
+      trend: { value: 11, isPositive: false }
+    },
+    totalContacts: {
+      value: "124",
+      trend: { value: 9, isPositive: false }
+    },
+    averageTime: {
+      value: "18 min",
+      trend: { value: 2, isPositive: false }
+    }
+  },
+  "camera-4": {
+    totalVisitors: {
+      value: "212",
+      trend: { value: 6, isPositive: true }
+    },
+    totalContacts: {
+      value: "68",
+      trend: { value: 4, isPositive: true }
+    },
+    averageTime: {
+      value: "8 min",
+      trend: { value: 10, isPositive: true }
+    }
+  }
+};
+
 type FilterContextType = {
   selectedDevices: string[];
   setSelectedDevices: React.Dispatch<React.SetStateAction<string[]>>;
@@ -141,6 +201,30 @@ export function FilterProvider({ children }: { children: ReactNode }) {
   
   // Calculate the current stats based on filters
   const currentStats = React.useMemo(() => {
+    // Handle device selection first
+    if (selectedDevices.length === 1 && selectedDevices[0] !== "todos") {
+      // Single device selected
+      const deviceId = selectedDevices[0];
+      return deviceStats[deviceId] || baseStats;
+    } else if (selectedDevices.length > 1) {
+      // Multiple devices selected - create an aggregated view
+      return {
+        totalVisitors: {
+          value: "863",
+          trend: { value: 9, isPositive: true }
+        },
+        totalContacts: {
+          value: "375",
+          trend: { value: 7, isPositive: true }
+        },
+        averageTime: {
+          value: "15 min",
+          trend: { value: 4, isPositive: true }
+        }
+      };
+    }
+    
+    // If "todos" is selected or date filtering is applied
     if (dateFilterType === "single") {
       const dateKey = format(date, "yyyy-MM-dd");
       return alternativeStats[dateKey] || baseStats;
@@ -154,7 +238,7 @@ export function FilterProvider({ children }: { children: ReactNode }) {
       }
     }
     return baseStats;
-  }, [date, dateRange, dateFilterType, filtersApplied]);
+  }, [date, dateRange, dateFilterType, filtersApplied, selectedDevices]);
 
   const applyFilters = () => {
     setFiltersApplied(prev => !prev); // Toggle state to trigger re-renders

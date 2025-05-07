@@ -32,13 +32,65 @@ const alternativeData = {
   // Add more dates if needed
 };
 
+// Device-specific data
+const deviceData = {
+  "camera-1": [
+    { name: "18-24", value: 22 },
+    { name: "25-34", value: 35 },
+    { name: "35-44", value: 25 },
+    { name: "45-54", value: 15 },
+    { name: "55+", value: 3 }
+  ],
+  "camera-2": [
+    { name: "18-24", value: 18 },
+    { name: "25-34", value: 30 },
+    { name: "35-44", value: 28 },
+    { name: "45-54", value: 20 },
+    { name: "55+", value: 4 }
+  ],
+  "camera-3": [
+    { name: "18-24", value: 13 },
+    { name: "25-34", value: 28 },
+    { name: "35-44", value: 32 },
+    { name: "45-54", value: 22 },
+    { name: "55+", value: 5 }
+  ],
+  "camera-4": [
+    { name: "18-24", value: 10 },
+    { name: "25-34", value: 25 },
+    { name: "35-44", value: 35 },
+    { name: "45-54", value: 23 },
+    { name: "55+", value: 7 }
+  ],
+};
+
+// Multiple devices data
+const multiDeviceData = [
+    { name: "18-24", value: 16 },
+    { name: "25-34", value: 30 },
+    { name: "35-44", value: 29 },
+    { name: "45-54", value: 19 },
+    { name: "55+", value: 6 }
+];
+
 const COLORS = ["#9b87f5", "#8064e8", "#6E59A5", "#D946EF", "#c639d8"];
 
 const AgeGroupPieChart = () => {
-  const { date, dateRange, dateFilterType, filtersApplied } = useFilters();
+  const { date, dateRange, dateFilterType, selectedDevices, filtersApplied } = useFilters();
 
-  // Generate synthetic data based on selected date
+  // Generate synthetic data based on selected date and devices
   const data = useMemo(() => {
+    // Handle device selection first
+    if (selectedDevices.length === 1 && selectedDevices[0] !== "todos") {
+      // Single device selected
+      const deviceId = selectedDevices[0];
+      return deviceData[deviceId] || baseData;
+    } else if (selectedDevices.length > 1) {
+      // Multiple devices selected
+      return multiDeviceData;
+    }
+    
+    // If "todos" is selected or date filtering is applied
     const dateKey = format(date, "yyyy-MM-dd");
     
     // Check if we have predefined data for this date
@@ -60,7 +112,7 @@ const AgeGroupPieChart = () => {
     
     // Default to base data
     return baseData;
-  }, [date, dateRange, dateFilterType, filtersApplied]); // Include filtersApplied to force re-render
+  }, [date, dateRange, dateFilterType, filtersApplied, selectedDevices]); // Include selectedDevices to force re-render
 
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }) => {
     const RADIAN = Math.PI / 180;
