@@ -39,7 +39,7 @@ const CustomerJourney = () => {
                 {/* Floor plan background image - updated to use the new image */}
                 <div className="absolute inset-0 w-full h-full opacity-40 z-0">
                   <img 
-                    src="/lovable-uploads/0d57f962-39f5-4e3d-8487-f683f70908ba.png" 
+                    src="/lovable-uploads/2de4d3ee-9bb2-4863-b631-14fb33780f8d.png" 
                     alt="Planta do estabelecimento com pontos mapeados" 
                     className="w-full h-full object-contain"
                   />

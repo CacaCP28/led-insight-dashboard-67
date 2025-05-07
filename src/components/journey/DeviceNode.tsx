@@ -15,13 +15,13 @@ interface DeviceNodeProps {
 
 const DeviceNode = memo(({ data }: DeviceNodeProps) => {
   return (
-    <div className="relative group">
+    <div className="relative group pointer-events-none">
       <div 
-        className={`node px-4 py-3 rounded-md shadow-lg text-white hover-scale transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.2)] ${data.isHighlighted ? 'ring-2 ring-offset-2 ring-white/50' : ''}`} 
+        className={`node px-4 py-3 rounded-md shadow-lg text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.2)] ${data.isHighlighted ? 'ring-2 ring-offset-2 ring-white/50' : ''}`} 
         style={{ 
           backgroundColor: `${data.color}30`,
           borderLeft: `3px solid ${data.color}`,
-          maxWidth: '200px' 
+          maxWidth: '180px'
         }}
       >
         <div className="flex items-center gap-2">
@@ -37,21 +37,21 @@ const DeviceNode = memo(({ data }: DeviceNodeProps) => {
 
         {/* Animated pulse effect */}
         <div 
-          className="absolute inset-0 -z-10 rounded-md animate-pulse opacity-20"
+          className="absolute inset-0 -z-10 rounded-md opacity-20"
           style={{ backgroundColor: data.color }}
         ></div>
       </div>
       
-      {/* Connection handles */}
+      {/* Connection handles - hidden but functional */}
       <Handle 
         type="target" 
         position={Position.Top} 
-        className="w-2 h-2 bg-white/80 border-none" 
+        className="invisible w-1 h-1" 
       />
       <Handle 
         type="source" 
         position={Position.Bottom} 
-        className="w-2 h-2 bg-white/80 border-none" 
+        className="invisible w-1 h-1" 
       />
     </div>
   );
