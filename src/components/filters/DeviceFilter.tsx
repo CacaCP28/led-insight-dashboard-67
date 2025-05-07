@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { HardDrive, CalendarIcon, Check, ChevronDown } from "lucide-react";
+import { HardDrive, CalendarIcon, Check, ChevronDown, CalendarRange } from "lucide-react";
 import { 
   Popover,
   PopoverContent,
@@ -16,10 +16,12 @@ import {
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
+import { format, isSameDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "@/components/ui/use-toast";
 
 const devices = [
   { value: "camera-1", label: "Câmera 1 - Entrada" },
@@ -31,8 +33,22 @@ const devices = [
 
 const DeviceFilter = () => {
   const [selectedDevices, setSelectedDevices] = useState<string[]>(["todos"]);
-  const [date, setDate] = useState<Date>(new Date());
   const [openDevicePopover, setOpenDevicePopover] = useState(false);
+  
+  // Estado para data única
+  const [date, setDate] = useState<Date>(new Date());
+  
+  // Estados para o intervalo de datas
+  const [dateRange, setDateRange] = useState<{
+    from: Date | undefined;
+    to: Date | undefined;
+  }>({
+    from: new Date(),
+    to: undefined,
+  });
+  
+  // Estado para controlar qual tipo de filtro de data está ativo
+  const [dateFilterType, setDateFilterType] = useState<"single" | "range">("single");
 
   const toggleDevice = (value: string) => {
     setSelectedDevices((current) => {
@@ -54,6 +70,44 @@ const DeviceFilter = () => {
   const getSelectedLabels = () => {
     if (selectedDevices.includes("todos")) return "Todos os dispositivos";
     return `${selectedDevices.length} dispositivo(s) selecionado(s)`;
+  };
+  
+  const getDateDisplayText = () => {
+    if (dateFilterType === "single") {
+      return date ? format(date, "PPP", { locale: ptBR }) : "Selecione a data";
+    } else {
+      if (dateRange.from) {
+        if (dateRange.to) {
+          return `${format(dateRange.from, "dd/MM/yyyy")} até ${format(dateRange.to, "dd/MM/yyyy")}`;
+        }
+        return `A partir de ${format(dateRange.from, "dd/MM/yyyy")}`;
+      }
+      return "Selecione o intervalo";
+    }
+  };
+  
+  const handleApplyFilters = () => {
+    // Simulando a aplicação dos filtros
+    const dateInfo = dateFilterType === "single" 
+      ? format(date, "dd/MM/yyyy") 
+      : dateRange.from 
+        ? dateRange.to 
+          ? `${format(dateRange.from, "dd/MM/yyyy")} até ${format(dateRange.to, "dd/MM/yyyy")}`
+          : `A partir de ${format(dateRange.from, "dd/MM/yyyy")}` 
+        : "Sem data selecionada";
+        
+    toast({
+      title: "Filtros aplicados",
+      description: `Dispositivos: ${getSelectedLabels()}. Período: ${dateInfo}`,
+    });
+    
+    // Aqui você poderia atualizar os dados do dashboard com base nos filtros selecionados
+    console.log("Filtros aplicados:", {
+      devices: selectedDevices,
+      dateType: dateFilterType,
+      singleDate: date,
+      dateRange: dateRange
+    });
   };
 
   return (
@@ -80,7 +134,7 @@ const DeviceFilter = () => {
               </div>
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-[250px] p-0" align="start">
+          <PopoverContent className="w-[250px] p-0 bg-popover" align="start">
             <Command className="bg-popover">
               <CommandInput placeholder="Buscar dispositivo..." />
               <CommandList>
@@ -116,27 +170,58 @@ const DeviceFilter = () => {
             <Button
               variant="outline"
               className={cn(
-                "w-[200px] justify-start text-left font-normal bg-muted",
-                !date && "text-muted-foreground"
+                "w-[250px] justify-start text-left font-normal bg-muted",
+                !date && !dateRange.from && "text-muted-foreground"
               )}
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date ? format(date, "PPP", { locale: ptBR }) : <span>Selecione a data</span>}
+              {dateFilterType === "single" ? (
+                <CalendarIcon className="mr-2 h-4 w-4" />
+              ) : (
+                <CalendarRange className="mr-2 h-4 w-4" />
+              )}
+              {getDateDisplayText()}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={(date) => date && setDate(date)}
-              initialFocus
-              locale={ptBR}
-            />
+          <PopoverContent className="w-auto p-0 bg-popover" align="start">
+            <Tabs 
+              defaultValue="single" 
+              value={dateFilterType} 
+              onValueChange={(value) => setDateFilterType(value as "single" | "range")}
+              className="p-2"
+            >
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="single">Data única</TabsTrigger>
+                <TabsTrigger value="range">Intervalo</TabsTrigger>
+              </TabsList>
+              <TabsContent value="single" className="mt-2">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={(newDate) => newDate && setDate(newDate)}
+                  initialFocus
+                  locale={ptBR}
+                  className="pointer-events-auto"
+                />
+              </TabsContent>
+              <TabsContent value="range" className="mt-2">
+                <Calendar
+                  mode="range"
+                  selected={dateRange}
+                  onSelect={setDateRange}
+                  initialFocus
+                  locale={ptBR}
+                  className="pointer-events-auto"
+                />
+              </TabsContent>
+            </Tabs>
           </PopoverContent>
         </Popover>
       </div>
       
-      <Button className="ml-auto bg-led-gradient-1 hover:opacity-90 transition-opacity">
+      <Button 
+        className="ml-auto bg-led-gradient-1 hover:opacity-90 transition-opacity"
+        onClick={handleApplyFilters}
+      >
         Aplicar Filtros
       </Button>
     </div>
