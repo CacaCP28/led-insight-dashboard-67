@@ -32,14 +32,14 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-white/5 transition-all duration-300 ease-in-out sticky top-0 z-10 backdrop-blur-sm bg-led-dark/80">
       <div className="flex items-center">
-        {isMobile && (
+        {toggleSidebar && (
           <Button 
             variant="ghost" 
             size="icon" 
-            className="mr-2 text-white hover:bg-white/10"
+            className="mr-2 text-white hover:bg-white/10 hover:text-led-purple"
             onClick={toggleSidebar}
           >
-            <Menu size={20} />
+            <Menu size={24} className="text-glow" />
             <span className="sr-only">Toggle menu</span>
           </Button>
         )}

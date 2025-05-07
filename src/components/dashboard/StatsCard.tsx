@@ -23,8 +23,9 @@ const StatsCard: React.FC<StatsCardProps> = ({
 }) => {
   return (
     <div className={cn(
-      "led-card p-5 flex flex-col animate-fade-in rounded-xl border border-white/10 shadow-xl",
+      "led-card p-5 flex flex-col animate-fade-in rounded-xl border border-white/10 shadow-xl glow-effect",
       "bg-gradient-to-br from-led-purple/30 to-led-pink/30 backdrop-blur-xl hover:-translate-y-1 transition-all duration-300",
+      "hover:shadow-purple-500/20 hover:border-purple-500/30",
       className
     )}>
       <div className="flex items-start justify-between mb-4">

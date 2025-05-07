@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import CustomSidebar from "./CustomSidebar";
 import Header from "./Header";
 import { useIsMobile } from "../../hooks/use-mobile";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
 const Layout: React.FC = () => {
   const isMobile = useIsMobile();
@@ -15,8 +16,21 @@ const Layout: React.FC = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gradient-to-br from-led-background to-led-dark-purple/80">
+      {/* Desktop sidebar - always visible on desktop */}
       {!isMobile && <CustomSidebar />}
-      {isMobile && sidebarOpen && <CustomSidebar />}
+      
+      {/* Mobile sidebar - shown when toggled */}
+      {isMobile && sidebarOpen && (
+        <div className="fixed inset-0 z-50">
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm" 
+            onClick={toggleSidebar}
+          />
+          <div className="absolute left-0 top-0 h-full w-[240px] animate-slide-in-right">
+            <CustomSidebar />
+          </div>
+        </div>
+      )}
       
       <div className="flex flex-col flex-1 overflow-hidden">
         <Header toggleSidebar={toggleSidebar} />

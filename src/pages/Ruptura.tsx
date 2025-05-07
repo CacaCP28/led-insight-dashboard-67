@@ -51,36 +51,36 @@ const Ruptura = () => {
         </div>
         
         {/* KPIs */}
-        <div className="mb-6 animate-fade-in" style={{animationDelay: "0.1s"}}>
+        <div className="mb-6 animate-fade-in breathing-glow" style={{animationDelay: "0.1s"}}>
           <RupturaKPIs />
         </div>
         
         {/* Primeira linha de gráficos */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          <div className="animate-fade-in" style={{animationDelay: "0.2s"}}>
+          <div className="animate-fade-in breathing-glow" style={{animationDelay: "0.2s"}}>
             <StoreHeatmap />
           </div>
-          <div className="animate-fade-in" style={{animationDelay: "0.3s"}}>
+          <div className="animate-fade-in breathing-glow" style={{animationDelay: "0.3s"}}>
             <Gondola3D />
           </div>
         </div>
         
         {/* Segunda linha de gráficos */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          <div className="animate-fade-in" style={{animationDelay: "0.4s"}}>
+          <div className="animate-fade-in breathing-glow" style={{animationDelay: "0.4s"}}>
             <FinancialImpact />
           </div>
-          <div className="animate-fade-in" style={{animationDelay: "0.5s"}}>
+          <div className="animate-fade-in breathing-glow" style={{animationDelay: "0.5s"}}>
             <TimelineChart />
           </div>
         </div>
         
         {/* Terceira linha de gráficos */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          <div className="animate-fade-in" style={{animationDelay: "0.6s"}}>
+          <div className="animate-fade-in breathing-glow" style={{animationDelay: "0.6s"}}>
             <CriticalSKUs />
           </div>
-          <div className="animate-fade-in" style={{animationDelay: "0.7s"}}>
+          <div className="animate-fade-in breathing-glow" style={{animationDelay: "0.7s"}}>
             <AssistantChat />
           </div>
         </div>
