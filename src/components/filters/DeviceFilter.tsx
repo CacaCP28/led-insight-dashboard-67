@@ -12,6 +12,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -80,27 +81,29 @@ const DeviceFilter = () => {
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-[250px] p-0" align="start">
-            <Command>
+            <Command className="bg-popover">
               <CommandInput placeholder="Buscar dispositivo..." />
-              <CommandEmpty>Nenhum dispositivo encontrado.</CommandEmpty>
-              <CommandGroup>
-                {devices.map((device) => (
-                  <CommandItem
-                    key={device.value}
-                    onSelect={() => {
-                      toggleDevice(device.value);
-                      setOpenDevicePopover(false);
-                    }}
-                  >
-                    <div className="flex items-center justify-between w-full">
-                      <span>{device.label}</span>
-                      {selectedDevices.includes(device.value) && (
-                        <Check className="h-4 w-4 text-primary" />
-                      )}
-                    </div>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
+              <CommandList>
+                <CommandEmpty>Nenhum dispositivo encontrado.</CommandEmpty>
+                <CommandGroup>
+                  {devices.map((device) => (
+                    <CommandItem
+                      key={device.value}
+                      onSelect={() => {
+                        toggleDevice(device.value);
+                        setOpenDevicePopover(false);
+                      }}
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <span>{device.label}</span>
+                        {selectedDevices.includes(device.value) && (
+                          <Check className="h-4 w-4 text-primary" />
+                        )}
+                      </div>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
             </Command>
           </PopoverContent>
         </Popover>
