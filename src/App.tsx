@@ -1,32 +1,38 @@
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Toaster } from './components/ui/sonner';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from '@/components/ui/toaster';
+import { LayoutWrapper } from '@/components/layout/LayoutWrapper';
 
-import Layout from './components/layout/Layout';
-import Index from './pages/Index';
-import CustomerJourney from './pages/CustomerJourney';
-import Ruptura from './pages/Ruptura';
-import NotFound from './pages/NotFound';
-import Devices from './pages/Devices';
-import Settings from './pages/Settings';
+import Devices from '@/pages/Devices';
+import Index from '@/pages/Index';
+import NotFound from '@/pages/NotFound';
+import CustomerJourney from '@/pages/CustomerJourney';
+import Settings from '@/pages/Settings';
+import Ruptura from '@/pages/Ruptura';
+import Reports from '@/pages/Reports';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-led-background">
+    <QueryClientProvider client={queryClient}>
+      <Router>
         <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Index />} />
+          <Route element={<LayoutWrapper />}>
+            <Route index element={<Index />} />
             <Route path="/customer-journey" element={<CustomerJourney />} />
-            <Route path="/ruptura" element={<Ruptura />} />
             <Route path="/devices" element={<Devices />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/ruptura" element={<Ruptura />} />
+            <Route path="/reports" element={<Reports />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-        <Toaster richColors />
-      </div>
-    </BrowserRouter>
+      </Router>
+      <Toaster />
+    </QueryClientProvider>
   );
 }
 
