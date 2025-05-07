@@ -21,7 +21,7 @@ const Ruptura = () => {
   const isMobile = useIsMobile();
   
   return (
-    <div className="min-h-screen bg-led-background">
+    <div className="w-full">
       {/* Animated background with gradient overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-background to-background pointer-events-none z-0"></div>
       
@@ -30,7 +30,7 @@ const Ruptura = () => {
       <div className="absolute bottom-1/3 left-1/3 w-32 h-32 rounded-full bg-led-pink/10 blur-3xl animate-float pointer-events-none" style={{animationDelay: "-1.5s"}}></div>
       <div className="absolute top-2/3 right-1/4 w-20 h-20 rounded-full bg-led-orange/10 blur-3xl animate-float pointer-events-none" style={{animationDelay: "-2.5s"}}></div>
       
-      <main className="relative z-10 p-6 w-full">
+      <div className="relative z-10 w-full">
         <div className="mb-6 animate-fade-in">
           <h1 className="text-2xl font-bold mb-2 bg-led-gradient-3 bg-clip-text text-transparent">Dashboard de Ruptura</h1>
           <p className="text-white/70">Monitoramento em tempo real de rupturas de estoque</p>
@@ -88,7 +88,7 @@ const Ruptura = () => {
         <div className="text-center text-gray-500 text-xs mt-4 mb-8">
           Última atualização: {new Date().toLocaleString('pt-BR')}
         </div>
-      </main>
+      </div>
     </div>
   );
 };

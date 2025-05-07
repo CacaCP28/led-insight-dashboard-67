@@ -16,7 +16,11 @@ export const Layout = () => {
   return (
     <div className="flex h-screen overflow-hidden bg-gradient-to-br from-led-background to-led-dark-purple/80">
       {/* Desktop sidebar - always visible on desktop */}
-      {!isMobile && <CustomSidebar />}
+      {!isMobile && (
+        <div className="h-screen">
+          <CustomSidebar />
+        </div>
+      )}
       
       {/* Mobile sidebar - shown when toggled */}
       {isMobile && sidebarOpen && (
