@@ -1,8 +1,11 @@
 
-import React from "react";
+import React, { useMemo } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { useFilters } from "@/contexts/FilterContext";
+import { format } from "date-fns";
 
-const data = [
+// Base data
+const baseData = [
   { name: "18-24", value: 15 },
   { name: "25-34", value: 32 },
   { name: "35-44", value: 28 },
@@ -10,9 +13,55 @@ const data = [
   { name: "55+", value: 7 }
 ];
 
+// Data for different days (just for simulation)
+const alternativeData = {
+  "2025-05-06": [
+    { name: "18-24", value: 20 },
+    { name: "25-34", value: 25 },
+    { name: "35-44", value: 30 },
+    { name: "45-54", value: 15 },
+    { name: "55+", value: 10 }
+  ],
+  "2025-05-05": [
+    { name: "18-24", value: 12 },
+    { name: "25-34", value: 38 },
+    { name: "35-44", value: 25 },
+    { name: "45-54", value: 20 },
+    { name: "55+", value: 5 }
+  ],
+  // Add more dates if needed
+};
+
 const COLORS = ["#9b87f5", "#8064e8", "#6E59A5", "#D946EF", "#c639d8"];
 
 const AgeGroupPieChart = () => {
+  const { date, dateRange, dateFilterType, filtersApplied } = useFilters();
+
+  // Generate synthetic data based on selected date
+  const data = useMemo(() => {
+    const dateKey = format(date, "yyyy-MM-dd");
+    
+    // Check if we have predefined data for this date
+    if (dateFilterType === "single" && alternativeData[dateKey]) {
+      return alternativeData[dateKey];
+    }
+    
+    // If it's a range, calculate an average or use special data
+    if (dateFilterType === "range" && dateRange.from && dateRange.to) {
+      // For demo purposes, just use different data for ranges
+      return [
+        { name: "18-24", value: 18 },
+        { name: "25-34", value: 30 },
+        { name: "35-44", value: 26 },
+        { name: "45-54", value: 15 },
+        { name: "55+", value: 11 }
+      ];
+    }
+    
+    // Default to base data
+    return baseData;
+  }, [date, dateRange, dateFilterType, filtersApplied]); // Include filtersApplied to force re-render
+
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }) => {
     const RADIAN = Math.PI / 180;
     // Positioning the label inside the pie to ensure it stays within bounds

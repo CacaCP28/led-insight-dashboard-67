@@ -16,13 +16,14 @@ import {
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { format, isSameDay } from "date-fns";
+import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
 import { DateRange } from "react-day-picker";
+import { useFilters } from "@/contexts/FilterContext";
 
 const devices = [
   { value: "camera-1", label: "Câmera 1 - Entrada" },
@@ -33,20 +34,19 @@ const devices = [
 ];
 
 const DeviceFilter = () => {
-  const [selectedDevices, setSelectedDevices] = useState<string[]>(["todos"]);
+  const {
+    selectedDevices, 
+    setSelectedDevices,
+    date, 
+    setDate,
+    dateRange, 
+    setDateRange,
+    dateFilterType, 
+    setDateFilterType,
+    applyFilters
+  } = useFilters();
+  
   const [openDevicePopover, setOpenDevicePopover] = useState(false);
-  
-  // Estado para data única
-  const [date, setDate] = useState<Date>(new Date());
-  
-  // Estados para o intervalo de datas - using the DateRange type from react-day-picker
-  const [dateRange, setDateRange] = useState<DateRange>({
-    from: new Date(),
-    to: undefined
-  });
-  
-  // Estado para controlar qual tipo de filtro de data está ativo
-  const [dateFilterType, setDateFilterType] = useState<"single" | "range">("single");
 
   const toggleDevice = (value: string) => {
     setSelectedDevices((current) => {
@@ -99,13 +99,8 @@ const DeviceFilter = () => {
       description: `Dispositivos: ${getSelectedLabels()}. Período: ${dateInfo}`,
     });
     
-    // Aqui você poderia atualizar os dados do dashboard com base nos filtros selecionados
-    console.log("Filtros aplicados:", {
-      devices: selectedDevices,
-      dateType: dateFilterType,
-      singleDate: date,
-      dateRange: dateRange
-    });
+    // Chama o método para aplicar os filtros no contexto
+    applyFilters();
   };
 
   return (
@@ -227,4 +222,3 @@ const DeviceFilter = () => {
 };
 
 export default DeviceFilter;
-

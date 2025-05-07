@@ -1,8 +1,11 @@
 
-import React from "react";
+import React, { useMemo } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useFilters } from "@/contexts/FilterContext";
+import { format } from "date-fns";
 
-const data = [
+// Base data
+const baseData = [
   { name: '18-24', masculino: 120, feminino: 150 },
   { name: '25-34', masculino: 180, feminino: 160 },
   { name: '35-44', masculino: 220, feminino: 140 },
@@ -11,7 +14,56 @@ const data = [
   { name: '65+', masculino: 60, feminino: 40 }
 ];
 
+// Data for different days (just for simulation)
+const alternativeData = {
+  "2025-05-06": [
+    { name: '18-24', masculino: 100, feminino: 170 },
+    { name: '25-34', masculino: 150, feminino: 180 },
+    { name: '35-44', masculino: 180, feminino: 160 },
+    { name: '45-54', masculino: 140, feminino: 130 },
+    { name: '55-64', masculino: 80, feminino: 90 },
+    { name: '65+', masculino: 50, feminino: 60 }
+  ],
+  "2025-05-05": [
+    { name: '18-24', masculino: 130, feminino: 140 },
+    { name: '25-34', masculino: 190, feminino: 150 },
+    { name: '35-44', masculino: 200, feminino: 150 },
+    { name: '45-54', masculino: 150, feminino: 130 },
+    { name: '55-64', masculino: 110, feminino: 70 },
+    { name: '65+', masculino: 70, feminino: 30 }
+  ],
+  // Add more dates if needed
+};
+
 const GenderAgeComparisonChart = () => {
+  const { date, dateRange, dateFilterType, filtersApplied } = useFilters();
+
+  // Generate synthetic data based on selected date
+  const data = useMemo(() => {
+    const dateKey = format(date, "yyyy-MM-dd");
+    
+    // Check if we have predefined data for this date
+    if (dateFilterType === "single" && alternativeData[dateKey]) {
+      return alternativeData[dateKey];
+    }
+    
+    // If it's a range, calculate an average or use special data
+    if (dateFilterType === "range" && dateRange.from && dateRange.to) {
+      // For demo purposes, just use different data for ranges
+      return [
+        { name: '18-24', masculino: 110, feminino: 160 },
+        { name: '25-34', masculino: 170, feminino: 170 },
+        { name: '35-44', masculino: 200, feminino: 150 },
+        { name: '45-54', masculino: 150, feminino: 125 },
+        { name: '55-64', masculino: 90, feminino: 85 },
+        { name: '65+', masculino: 55, feminino: 50 }
+      ];
+    }
+    
+    // Default to base data
+    return baseData;
+  }, [date, dateRange, dateFilterType, filtersApplied]); // Include filtersApplied to force re-render
+
   return (
     <div style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer width="100%" height="100%">
