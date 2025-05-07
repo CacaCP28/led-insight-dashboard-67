@@ -7,8 +7,12 @@ import {
   HardDrive, 
   Settings,
   Route,
+  Menu,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface SidebarProps {
   collapsed: boolean;
@@ -16,6 +20,88 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
+  const isMobile = useIsMobile();
+
+  // Mobile sidebar with Sheet component
+  if (isMobile) {
+    return (
+      <>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button 
+              variant="outline" 
+              size="icon" 
+              className="fixed left-4 top-4 z-40 bg-led-sidebar text-led-text border-border/30"
+            >
+              <Menu size={24} />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0 bg-led-sidebar border-r border-border/30 max-w-[280px] sm:max-w-[320px]">
+            <div className="flex flex-col h-full">
+              <div className="flex items-center justify-center h-16 px-4 border-b border-border/30">
+                <img 
+                  src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
+                  alt="THE LED Logo" 
+                  className="h-12 w-auto" 
+                />
+              </div>
+              
+              <nav className="flex flex-col gap-2 p-4 grow">
+                <NavItem
+                  icon={<LayoutDashboard size={20} />}
+                  label="Dashboard"
+                  route="/"
+                  collapsed={false}
+                />
+                <NavItem
+                  icon={<Route size={20} />}
+                  label="Jornada do Cliente"
+                  route="/jornada"
+                  collapsed={false}
+                />
+                <NavItem
+                  icon={<BarChart3 size={20} />}
+                  label="Relatórios"
+                  route="/relatorios"
+                  collapsed={false}
+                />
+                <NavItem
+                  icon={<HardDrive size={20} />}
+                  label="Dispositivos"
+                  route="/dispositivos"
+                  collapsed={false}
+                />
+                <NavItem
+                  icon={<Settings size={20} />}
+                  label="Configurações"
+                  route="/configuracoes"
+                  collapsed={false}
+                />
+              </nav>
+
+              <div className="p-4 mt-auto">
+                <a 
+                  href="https://globalia.com.br" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-1.5 rounded-lg bg-gradient-to-r from-led-purple to-led-orange text-white font-medium transition-all text-xs"
+                >
+                  <span>Desenvolvido por</span>
+                  <img 
+                    src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
+                    alt="Global IA Logo" 
+                    className="h-4 w-auto ml-2"
+                  />
+                </a>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </>
+    );
+  }
+
+  // Desktop sidebar
   return (
     <aside className={cn(
       "h-screen bg-led-sidebar fixed left-0 top-0 z-30 flex flex-col transition-all duration-300 ease-in-out border-r border-border/30",
@@ -27,7 +113,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
             <img 
               src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
               alt="THE LED Logo" 
-              className="h-12 w-auto" // Increased from h-10 to h-12
+              className="h-12 w-auto"
             />
           )}
         </div>
@@ -97,7 +183,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
             <img 
               src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
               alt="Global IA Logo" 
-              className="h-4 w-auto ml-2" // Reverted back to h-4 from h-5
+              className="h-4 w-auto ml-2"
             />
           </a>
         )}
