@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
+import { DateRange } from "react-day-picker";
 
 const devices = [
   { value: "camera-1", label: "Câmera 1 - Entrada" },
@@ -38,13 +39,10 @@ const DeviceFilter = () => {
   // Estado para data única
   const [date, setDate] = useState<Date>(new Date());
   
-  // Estados para o intervalo de datas
-  const [dateRange, setDateRange] = useState<{
-    from: Date | undefined;
-    to: Date | undefined;
-  }>({
+  // Estados para o intervalo de datas - using the DateRange type from react-day-picker
+  const [dateRange, setDateRange] = useState<DateRange>({
     from: new Date(),
-    to: undefined,
+    to: undefined
   });
   
   // Estado para controlar qual tipo de filtro de data está ativo
@@ -229,3 +227,4 @@ const DeviceFilter = () => {
 };
 
 export default DeviceFilter;
+
