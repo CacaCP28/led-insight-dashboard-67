@@ -88,12 +88,13 @@ const DeviceFilter = () => {
                   <CommandItem
                     key={device.value}
                     onSelect={() => toggleDevice(device.value)}
-                    className="flex items-center justify-between"
                   >
-                    {device.label}
-                    {selectedDevices.includes(device.value) && (
-                      <Check className="h-4 w-4 text-primary" />
-                    )}
+                    <div className="flex items-center justify-between w-full">
+                      <span>{device.label}</span>
+                      {selectedDevices.includes(device.value) && (
+                        <Check className="h-4 w-4 text-primary" />
+                      )}
+                    </div>
                   </CommandItem>
                 ))}
               </CommandGroup>
