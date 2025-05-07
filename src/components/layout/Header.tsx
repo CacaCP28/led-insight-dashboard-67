@@ -27,7 +27,9 @@ const Header: React.FC<HeaderProps> = ({ sidebarCollapsed }) => {
       sidebarCollapsed ? "ml-20" : "ml-64"
     )}>
       <div className="flex items-center">
-        <h1 className="text-xl font-bold mr-6 animate-fade-in">Dashboard</h1>
+        <div className="flex items-center mr-6">
+          <h1 className="text-3xl font-bold bg-led-gradient-3 bg-clip-text text-transparent animate-fade-in">THE LED</h1>
+        </div>
         <div className="flex items-center text-muted-foreground">
           <CalendarIcon size={18} className="mr-2 animate-pulse" />
           <span>{formattedDate}</span>
