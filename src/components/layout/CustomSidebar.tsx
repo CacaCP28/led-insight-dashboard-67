@@ -26,9 +26,15 @@ const CustomSidebar = () => {
       activeBackground: "bg-purple-900/40"
     },
     {
-      title: "Relatórios",
+      title: "Ruptura",
       icon: <BarChart3 size={20} />,
       path: "/ruptura",
+      activeBackground: "bg-purple-900/40"
+    },
+    {
+      title: "Relatórios",
+      icon: <BarChart3 size={20} />,
+      path: "/reports",
       activeBackground: "bg-purple-900/40"
     },
     {

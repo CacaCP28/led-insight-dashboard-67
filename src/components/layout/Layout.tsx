@@ -4,9 +4,8 @@ import { Outlet } from "react-router-dom";
 import CustomSidebar from "./CustomSidebar";
 import Header from "./Header";
 import { useIsMobile } from "../../hooks/use-mobile";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
-const Layout: React.FC = () => {
+export const Layout = () => {
   const isMobile = useIsMobile();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   
@@ -34,7 +33,7 @@ const Layout: React.FC = () => {
       
       <div className="flex flex-col flex-1 overflow-hidden">
         <Header toggleSidebar={toggleSidebar} />
-        <main className="flex-1 overflow-y-auto p-2">
+        <main className="flex-1 overflow-y-auto p-2 md:p-6">
           <Outlet />
         </main>
       </div>

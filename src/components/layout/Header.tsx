@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-white/5 transition-all duration-300 ease-in-out sticky top-0 z-10 backdrop-blur-sm bg-led-dark/80">
       <div className="flex items-center">
-        {toggleSidebar && (
+        {toggleSidebar && isMobile && (
           <Button 
             variant="ghost" 
             size="icon" 
