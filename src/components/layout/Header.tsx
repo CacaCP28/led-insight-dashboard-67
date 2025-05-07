@@ -14,28 +14,18 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-interface HeaderProps {
-  sidebarCollapsed?: boolean;
-  title?: string;
-  toggleSidebar?: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, title, toggleSidebar }) => {
+const Header: React.FC = () => {
   const today = new Date();
   const formattedDate = format(today, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR });
   const isMobile = useIsMobile();
 
   return (
-    <header className={cn(
-      "flex items-center justify-between h-16 px-4 sm:px-6 border-b border-border/30 transition-all duration-300 ease-in-out sticky top-0 z-10 backdrop-blur-sm bg-led-dark/80",
-      isMobile ? "ml-0" : (sidebarCollapsed ? "ml-20" : "ml-64")
-    )}>
+    <header className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-border/30 transition-all duration-300 ease-in-out sticky top-0 z-10 backdrop-blur-sm bg-led-dark/80">
       <div className="flex items-center">
         {isMobile && (
           <Button 
             variant="ghost" 
             size="icon" 
-            onClick={toggleSidebar} 
             className="mr-2"
           >
             <Menu size={20} />
@@ -52,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, title, toggleSidebar 
           <>
             <div className="flex items-center mr-6">
               <h1 className="text-3xl font-bold bg-led-gradient-3 bg-clip-text text-transparent animate-fade-in">
-                {title || "THE LED"}
+                THE LED
               </h1>
             </div>
             <div className="hidden sm:flex items-center text-muted-foreground">

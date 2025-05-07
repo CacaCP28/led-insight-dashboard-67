@@ -49,15 +49,14 @@ const CustomSidebar = () => {
     <div className="flex flex-col h-screen bg-[#1A1F2C] text-white w-[240px] min-w-[240px]">
       {/* Logo Area */}
       <div className="p-4 mb-6 mt-2">
-        <div className="flex items-center space-x-2">
-          <div className="flex">
-            <div className="w-4 h-6 bg-red-500"></div>
-            <div className="w-4 h-6 bg-yellow-500"></div>
-            <div className="w-4 h-6 bg-blue-500"></div>
-          </div>
-          <h1 className="text-xl font-bold text-white">THE LED</h1>
+        <div className="flex flex-col items-center mb-2">
+          <img 
+            src="/lovable-uploads/d7ba8bb0-950e-4bbd-b353-48a4fd72f72a.png" 
+            alt="THE LED Logo" 
+            className="w-full max-w-[180px] mb-2" 
+          />
+          <div className="text-xs text-gray-400 text-center">INFINITAS POSSIBILIDADES</div>
         </div>
-        <div className="text-xs text-gray-400 mt-1">INSIGHTS PERSONALIZADOS</div>
       </div>
 
       {/* Menu Items */}
