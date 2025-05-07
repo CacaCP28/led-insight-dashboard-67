@@ -2,7 +2,7 @@
 import React from "react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { CalendarIcon, ChevronDown, LogOut, User } from "lucide-react";
+import { CalendarIcon, ChevronDown, LogOut, Menu, User } from "lucide-react";
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -17,9 +17,10 @@ import { useIsMobile } from "@/hooks/use-mobile";
 interface HeaderProps {
   sidebarCollapsed?: boolean;
   title?: string;
+  toggleSidebar?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, title }) => {
+const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, title, toggleSidebar }) => {
   const today = new Date();
   const formattedDate = format(today, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR });
   const isMobile = useIsMobile();
@@ -30,6 +31,18 @@ const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, title }) => {
       isMobile ? "ml-0" : (sidebarCollapsed ? "ml-20" : "ml-64")
     )}>
       <div className="flex items-center">
+        {isMobile && (
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={toggleSidebar} 
+            className="mr-2"
+          >
+            <Menu size={20} />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+        )}
+        
         {isMobile && (
           <div className="flex items-center mr-4">
             <h1 className="text-2xl sm:text-3xl font-bold bg-led-gradient-3 bg-clip-text text-transparent animate-fade-in">THE LED</h1>

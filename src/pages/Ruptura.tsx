@@ -23,6 +23,10 @@ const Ruptura = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const isMobile = useIsMobile();
   
+  const toggleSidebar = () => {
+    setSidebarCollapsed(prev => !prev);
+  };
+  
   return (
     <div className="flex min-h-screen bg-led-dark overflow-hidden relative">
       {/* Animated background with floating particles */}
@@ -38,7 +42,7 @@ const Ruptura = () => {
       <div className={`flex-1 transition-all duration-300 relative z-10 ${
         isMobile ? "" : (sidebarCollapsed ? "ml-20" : "ml-64")
       }`}>
-        <Header sidebarCollapsed={sidebarCollapsed} title="Ruptura" />
+        <Header sidebarCollapsed={sidebarCollapsed} title="Ruptura" toggleSidebar={toggleSidebar} />
         
         <main className="p-6">
           <div className="mb-6 animate-fade-in">

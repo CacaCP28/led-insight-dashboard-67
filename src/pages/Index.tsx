@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
-import Sidebar from "@/components/layout/Sidebar";
-import Header from "@/components/layout/Header";
+import Sidebar from "../components/layout/Sidebar";
+import Header from "../components/layout/Header";
 import DeviceFilter from "@/components/filters/DeviceFilter";
 import StatsCard from "@/components/dashboard/StatsCard";
 import ChartCard from "@/components/dashboard/ChartCard";
@@ -13,6 +12,7 @@ import EmotionsBarChart from "@/components/dashboard/EmotionsBarChart";
 import TimelineChart from "@/components/dashboard/TimelineChart";
 import GenderAgeComparisonChart from "@/components/dashboard/GenderAgeComparisonChart";
 import { FilterProvider, useFilters } from "@/contexts/FilterContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 import { Users, Handshake, Clock, PieChart } from "lucide-react";
 
@@ -52,10 +52,15 @@ const StatsSection = () => {
 
 const Index = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
+  const isMobile = useIsMobile();
+  
+  const toggleSidebar = () => {
+    setSidebarCollapsed(prev => !prev);
+  };
+  
   return (
     <FilterProvider>
-      <div className="flex min-h-screen bg-led-dark overflow-hidden relative">
+      <div className="flex min-h-screen bg-led-dark overflow-hidden">
         {/* Animated background with floating particles */}
         <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-background to-background pointer-events-none z-0"></div>
         
@@ -66,10 +71,10 @@ const Index = () => {
         
         <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
         
-        <div className={`flex-1 transition-all duration-300 relative z-10 ${
-          sidebarCollapsed ? "ml-20" : "ml-64"
+        <div className={`flex-1 transition-all duration-300 ${
+          isMobile ? "" : (sidebarCollapsed ? "ml-20" : "ml-64")
         }`}>
-          <Header sidebarCollapsed={sidebarCollapsed} title="Dashboard" />
+          <Header sidebarCollapsed={sidebarCollapsed} title="Dashboard" toggleSidebar={toggleSidebar} />
           
           <main className="p-6">
             <div className="mb-6 animate-fade-in">
