@@ -3,10 +3,10 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import CustomSidebar from "./CustomSidebar";
 import Header from "./Header";
-import { useMobile } from "../../hooks/use-mobile";
+import { useIsMobile } from "../../hooks/use-mobile";
 
 const Layout: React.FC = () => {
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   return (
     <div className="flex h-screen overflow-hidden">
