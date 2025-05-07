@@ -218,9 +218,11 @@ export const RouteFlow = () => {
           nodesDraggable={false}
           nodesConnectable={false}
           elementsSelectable={false}
-          zoomOnScroll={false}
-          panOnScroll={false}
+          zoomOnScroll={true}
+          panOnScroll={true}
           panOnDrag={false}
+          preventScrolling={false}
+          attributionPosition="bottom-right"
         >
           <Controls 
             className="bg-led-dark/50 text-white border border-white/10 rounded-md"

@@ -17,20 +17,20 @@ const DeviceNode = memo(({ data }: DeviceNodeProps) => {
   return (
     <div className="relative group pointer-events-none">
       <div 
-        className={`node px-4 py-3 rounded-md shadow-lg text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.2)] ${data.isHighlighted ? 'ring-2 ring-offset-2 ring-white/50' : ''}`} 
+        className={`node px-2 py-2 rounded-md shadow-lg text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.2)] ${data.isHighlighted ? 'ring-2 ring-offset-2 ring-white/50' : ''}`} 
         style={{ 
           backgroundColor: `${data.color}30`,
           borderLeft: `3px solid ${data.color}`,
-          maxWidth: '180px'
+          maxWidth: '140px'
         }}
       >
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">{data.icon}</span>
+        <div className="flex items-center gap-1">
+          <span className="text-lg">{data.icon}</span>
           <div>
-            <div className="font-semibold">{data.label}</div>
-            <div className="text-sm text-white/80">{data.visitors} visitantes</div>
+            <div className="font-semibold text-xs">{data.label}</div>
+            <div className="text-xs text-white/80">{data.visitors} visitantes</div>
             {data.dimensions && (
-              <div className="text-xs text-white/60 mt-1">{data.dimensions}</div>
+              <div className="text-xs text-white/60">{data.dimensions}</div>
             )}
           </div>
         </div>
