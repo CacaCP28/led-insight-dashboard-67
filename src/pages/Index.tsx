@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import Sidebar from "../components/layout/Sidebar";
-import Header from "../components/layout/Header";
+
+import React from "react";
 import DeviceFilter from "@/components/filters/DeviceFilter";
 import StatsCard from "@/components/dashboard/StatsCard";
 import ChartCard from "@/components/dashboard/ChartCard";
@@ -14,7 +13,7 @@ import GenderAgeComparisonChart from "@/components/dashboard/GenderAgeComparison
 import { FilterProvider, useFilters } from "@/contexts/FilterContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-import { Users, Handshake, Clock, PieChart } from "lucide-react";
+import { Users, Handshake, Clock } from "lucide-react";
 
 // Stats cards section as a separate component using the context
 const StatsSection = () => {
@@ -51,12 +50,7 @@ const StatsSection = () => {
 };
 
 const Index = () => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const isMobile = useIsMobile();
-  
-  const toggleSidebar = () => {
-    setSidebarCollapsed(prev => !prev);
-  };
   
   return (
     <FilterProvider>
@@ -69,13 +63,7 @@ const Index = () => {
         <div className="absolute bottom-1/3 left-1/3 w-32 h-32 rounded-full bg-led-pink/10 blur-3xl animate-float pointer-events-none" style={{animationDelay: "-1.5s"}}></div>
         <div className="absolute top-2/3 right-1/4 w-20 h-20 rounded-full bg-led-orange/10 blur-3xl animate-float pointer-events-none" style={{animationDelay: "-2.5s"}}></div>
         
-        <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
-        
-        <div className={`flex-1 transition-all duration-300 ${
-          isMobile ? "" : (sidebarCollapsed ? "ml-20" : "ml-64")
-        }`}>
-          <Header sidebarCollapsed={sidebarCollapsed} title="Dashboard" toggleSidebar={toggleSidebar} />
-          
+        <div className="flex-1">
           <main className="p-6">
             <div className="mb-6 animate-fade-in">
               <h1 className="text-2xl font-bold mb-2 bg-led-gradient-3 bg-clip-text text-transparent">Dashboard Analytics</h1>

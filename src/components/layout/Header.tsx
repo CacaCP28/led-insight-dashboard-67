@@ -14,7 +14,17 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  title?: string;
+  sidebarCollapsed?: boolean;
+  toggleSidebar?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ 
+  title, 
+  sidebarCollapsed, 
+  toggleSidebar 
+}) => {
   const today = new Date();
   const formattedDate = format(today, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR });
   const isMobile = useIsMobile();
@@ -27,6 +37,7 @@ const Header: React.FC = () => {
             variant="ghost" 
             size="icon" 
             className="mr-2"
+            onClick={toggleSidebar}
           >
             <Menu size={20} />
             <span className="sr-only">Toggle menu</span>
