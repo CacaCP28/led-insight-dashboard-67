@@ -8,6 +8,7 @@ interface DeviceNodeProps {
     visitors: number;
     icon: string;
     color: string;
+    dimensions?: string;
   };
 }
 
@@ -19,7 +20,7 @@ const DeviceNode = memo(({ data }: DeviceNodeProps) => {
         style={{ 
           backgroundColor: `${data.color}30`,
           borderLeft: `3px solid ${data.color}`,
-          maxWidth: '180px' 
+          maxWidth: '200px' 
         }}
       >
         <div className="flex items-center gap-2">
@@ -27,6 +28,9 @@ const DeviceNode = memo(({ data }: DeviceNodeProps) => {
           <div>
             <div className="font-semibold">{data.label}</div>
             <div className="text-sm text-white/80">{data.visitors} visitantes</div>
+            {data.dimensions && (
+              <div className="text-xs text-white/60 mt-1">{data.dimensions}</div>
+            )}
           </div>
         </div>
 

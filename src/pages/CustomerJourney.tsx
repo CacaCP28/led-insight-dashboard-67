@@ -4,16 +4,18 @@ import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import ChartCard from "@/components/dashboard/ChartCard";
 import { RouteFlow } from "@/components/journey/RouteFlow";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const CustomerJourney = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <div className="flex min-h-screen bg-led-dark overflow-hidden relative">
       {/* Animated background with floating particles */}
       <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-background to-background pointer-events-none z-0"></div>
       
-      {/* Floating orbs - animated elements the user requested */}
+      {/* Floating orbs - animated elements */}
       <div className="absolute top-1/4 right-1/3 w-24 h-24 rounded-full bg-led-purple/10 blur-3xl animate-float pointer-events-none"></div>
       <div className="absolute bottom-1/3 left-1/3 w-32 h-32 rounded-full bg-led-pink/10 blur-3xl animate-float pointer-events-none" style={{animationDelay: "-1.5s"}}></div>
       <div className="absolute top-2/3 right-1/4 w-20 h-20 rounded-full bg-led-orange/10 blur-3xl animate-float pointer-events-none" style={{animationDelay: "-2.5s"}}></div>
@@ -21,7 +23,7 @@ const CustomerJourney = () => {
       <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
       
       <div className={`flex-1 transition-all duration-300 relative z-10 ${
-        sidebarCollapsed ? "ml-20" : "ml-64"
+        isMobile ? "" : (sidebarCollapsed ? "ml-20" : "ml-64")
       }`}>
         <Header sidebarCollapsed={sidebarCollapsed} />
         
@@ -34,10 +36,10 @@ const CustomerJourney = () => {
           <div className="grid grid-cols-1 gap-6 mb-6">
             <div className="animate-fade-in">
               <ChartCard title="Fluxo de Visitantes pelos Ambientes" className="h-[70vh] relative overflow-hidden">
-                {/* Floor plan image */}
+                {/* Floor plan background image */}
                 <div className="absolute inset-0 w-full h-full opacity-25 z-0">
                   <img 
-                    src="/lovable-uploads/6ccc659a-2694-47ea-bd62-1b61bbb38f49.png" 
+                    src="/lovable-uploads/3cb34235-931b-4d07-ad74-e82f68bdc4ad.png" 
                     alt="Planta do estabelecimento" 
                     className="w-full h-full object-contain"
                   />
@@ -100,6 +102,20 @@ const CustomerJourney = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            
+            <div className="animate-fade-in" style={{animationDelay: "0.6s"}}>
+              <div className="led-card p-5 gradient-border">
+                <h3 className="text-sm font-medium text-white text-glow mb-3">Detalhes da Visualização</h3>
+                <p className="text-white/80 text-sm mb-2">
+                  O fluxograma acima representa o movimento dos clientes pelos diferentes ambientes do local. 
+                  Cada nó mostra uma área específica com suas dimensões exatas e número de visitantes registrados.
+                </p>
+                <p className="text-white/80 text-sm">
+                  As linhas animadas indicam o caminho mais comum seguido pelos visitantes, com a espessura 
+                  representando o volume de tráfego entre as áreas.
+                </p>
               </div>
             </div>
           </div>
