@@ -69,7 +69,7 @@ const Index = () => {
         <div className={`flex-1 transition-all duration-300 relative z-10 ${
           sidebarCollapsed ? "ml-20" : "ml-64"
         }`}>
-          <Header sidebarCollapsed={sidebarCollapsed} />
+          <Header sidebarCollapsed={sidebarCollapsed} title="Dashboard" />
           
           <main className="p-6">
             <div className="mb-6 animate-fade-in">

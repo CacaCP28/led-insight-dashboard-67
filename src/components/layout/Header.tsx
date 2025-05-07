@@ -15,10 +15,11 @@ import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface HeaderProps {
-  sidebarCollapsed: boolean;
+  sidebarCollapsed?: boolean;
+  title?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ sidebarCollapsed }) => {
+const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, title }) => {
   const today = new Date();
   const formattedDate = format(today, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR });
   const isMobile = useIsMobile();
@@ -37,7 +38,9 @@ const Header: React.FC<HeaderProps> = ({ sidebarCollapsed }) => {
         {!isMobile && (
           <>
             <div className="flex items-center mr-6">
-              <h1 className="text-3xl font-bold bg-led-gradient-3 bg-clip-text text-transparent animate-fade-in">THE LED</h1>
+              <h1 className="text-3xl font-bold bg-led-gradient-3 bg-clip-text text-transparent animate-fade-in">
+                {title || "THE LED"}
+              </h1>
             </div>
             <div className="hidden sm:flex items-center text-muted-foreground">
               <CalendarIcon size={18} className="mr-2 animate-pulse" />

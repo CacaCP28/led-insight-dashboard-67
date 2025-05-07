@@ -19,12 +19,13 @@ const profileOptions = [
 
 const Ruptura = () => {
   const [selectedProfile, setSelectedProfile] = useState('gerente');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   
   return (
     <div className="flex h-screen overflow-hidden bg-gray-950">
-      <Sidebar />
+      <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header title="Ruptura" />
+        <Header sidebarCollapsed={sidebarCollapsed} title="Ruptura" />
         <div className="flex-1 overflow-y-auto p-6">
           <div className="mb-6 flex justify-between items-center">
             <h1 className="text-2xl font-bold text-white">Dashboard de Ruptura</h1>

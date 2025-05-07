@@ -3,7 +3,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { BarChart2, Users, AlertTriangle } from "lucide-react";
 
-const Sidebar = () => {
+interface SidebarProps {
+  collapsed?: boolean;
+  setCollapsed?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
   return (
     <div className="h-screen w-64 bg-gray-900 text-white p-5 flex flex-col">
       <div className="mb-10">
