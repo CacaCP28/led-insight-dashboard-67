@@ -21,16 +21,16 @@ const Ruptura = () => {
   const isMobile = useIsMobile();
   
   return (
-    <div className="flex min-h-screen bg-led-dark overflow-hidden relative">
-      {/* Animated background with floating particles */}
-      <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-background to-background pointer-events-none z-0"></div>
+    <div className="min-h-screen bg-led-background">
+      {/* Animated background with gradient overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-background to-background pointer-events-none z-0"></div>
       
-      {/* Floating orbs */}
+      {/* Floating orbs for visual effect */}
       <div className="absolute top-1/4 right-1/3 w-24 h-24 rounded-full bg-led-purple/10 blur-3xl animate-float pointer-events-none"></div>
       <div className="absolute bottom-1/3 left-1/3 w-32 h-32 rounded-full bg-led-pink/10 blur-3xl animate-float pointer-events-none" style={{animationDelay: "-1.5s"}}></div>
       <div className="absolute top-2/3 right-1/4 w-20 h-20 rounded-full bg-led-orange/10 blur-3xl animate-float pointer-events-none" style={{animationDelay: "-2.5s"}}></div>
       
-      <main className="p-6 w-full">
+      <main className="relative z-10 p-6 w-full">
         <div className="mb-6 animate-fade-in">
           <h1 className="text-2xl font-bold mb-2 bg-led-gradient-3 bg-clip-text text-transparent">Dashboard de Ruptura</h1>
           <p className="text-white/70">Monitoramento em tempo real de rupturas de estoque</p>
@@ -40,7 +40,7 @@ const Ruptura = () => {
           <select
             value={selectedProfile}
             onChange={(e) => setSelectedProfile(e.target.value)}
-            className="bg-gray-800 text-white border border-gray-700 rounded px-3 py-2"
+            className="bg-led-dark text-white border border-led-purple/20 rounded-lg px-3 py-2 shadow-lg"
           >
             {profileOptions.map(option => (
               <option key={option.value} value={option.value}>

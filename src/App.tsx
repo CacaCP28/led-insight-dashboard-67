@@ -13,17 +13,19 @@ import Settings from './pages/Settings';
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Index />} />
-          <Route path="/customer-journey" element={<CustomerJourney />} />
-          <Route path="/ruptura" element={<Ruptura />} />
-          <Route path="/devices" element={<Devices />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-      <Toaster />
+      <div className="min-h-screen bg-led-background overflow-hidden">
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Index />} />
+            <Route path="/customer-journey" element={<CustomerJourney />} />
+            <Route path="/ruptura" element={<Ruptura />} />
+            <Route path="/devices" element={<Devices />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+        <Toaster />
+      </div>
     </BrowserRouter>
   );
 }

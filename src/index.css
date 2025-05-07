@@ -48,6 +48,15 @@
   }
 }
 
+/* Reset border styles globally */
+* {
+  @apply border-opacity-10;
+}
+
+html, body {
+  @apply overflow-x-hidden;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -67,6 +76,11 @@
 
   .led-icon-container {
     @apply flex items-center justify-center w-12 h-12 rounded-lg text-white;
+  }
+  
+  /* Fixed dropdown styling */
+  [data-radix-popper-content-wrapper] {
+    @apply z-50;
   }
 }
 
