@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
@@ -11,6 +10,7 @@ import HairColorBarChart from "@/components/dashboard/HairColorBarChart";
 import BeardTypeBarChart from "@/components/dashboard/BeardTypeBarChart";
 import EmotionsBarChart from "@/components/dashboard/EmotionsBarChart";
 import TimelineChart from "@/components/dashboard/TimelineChart";
+import GenderAgeComparisonChart from "@/components/dashboard/GenderAgeComparisonChart";
 
 import { Users, Handshake, Clock, PieChart } from "lucide-react";
 
@@ -67,6 +67,13 @@ const Index = () => {
                 trend={{ value: 5, isPositive: false }}
               />
             </div>
+          </div>
+          
+          {/* New Gender and Age Comparison Chart */}
+          <div className="mb-6 animate-fade-in" style={{animationDelay: "0.35s"}}>
+            <ChartCard title="Comparação de Gênero por Faixa Etária">
+              <GenderAgeComparisonChart />
+            </ChartCard>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

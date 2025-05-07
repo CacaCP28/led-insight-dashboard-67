@@ -27,7 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
             <img 
               src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
               alt="THE LED Logo" 
-              className="h-8 w-auto"
+              className="h-10 w-auto" // Increased from h-8 to h-10
             />
           )}
         </div>
@@ -87,14 +87,19 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
 
       <div className="p-4 mt-auto">
         {!collapsed && (
-          <div className="flex items-center justify-between p-2 rounded-lg bg-gradient-to-r from-led-orange via-led-purple to-led-pink text-white font-medium transition-all">
-            <span className="text-xs">Desenvolvido por</span>
+          <a 
+            href="https://globalia.com.br" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-1.5 rounded-lg bg-gradient-to-r from-led-purple to-led-orange text-white font-medium transition-all text-xs"
+          >
+            <span>Desenvolvido por</span>
             <img 
               src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
               alt="Global IA Logo" 
-              className="h-5 w-auto ml-2"
+              className="h-4 w-auto ml-2"
             />
-          </div>
+          </a>
         )}
       </div>
     </aside>
