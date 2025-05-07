@@ -27,7 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
             <img 
               src="/lovable-uploads/23204e4f-5218-4b27-bf97-1000637fdf04.png" 
               alt="THE LED Logo" 
-              className="h-10 w-auto" // Increased from h-8 to h-10
+              className="h-12 w-auto" // Increased from h-10 to h-12
             />
           )}
         </div>
@@ -97,7 +97,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
             <img 
               src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
               alt="Global IA Logo" 
-              className="h-4 w-auto ml-2"
+              className="h-5 w-auto ml-2" // Increased from h-4 to h-5
             />
           </a>
         )}
