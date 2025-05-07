@@ -12,9 +12,43 @@ import BeardTypeBarChart from "@/components/dashboard/BeardTypeBarChart";
 import EmotionsBarChart from "@/components/dashboard/EmotionsBarChart";
 import TimelineChart from "@/components/dashboard/TimelineChart";
 import GenderAgeComparisonChart from "@/components/dashboard/GenderAgeComparisonChart";
-import { FilterProvider } from "@/contexts/FilterContext";
+import { FilterProvider, useFilters } from "@/contexts/FilterContext";
 
 import { Users, Handshake, Clock, PieChart } from "lucide-react";
+
+// Stats cards section as a separate component using the context
+const StatsSection = () => {
+  const { currentStats } = useFilters();
+  
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <div className="animate-fade-in" style={{animationDelay: "0.1s"}}>
+        <StatsCard
+          title="Total de Visitantes"
+          value={currentStats.totalVisitors.value}
+          icon={Users}
+          trend={currentStats.totalVisitors.trend}
+        />
+      </div>
+      <div className="animate-fade-in" style={{animationDelay: "0.2s"}}>
+        <StatsCard
+          title="Total de Contatos"
+          value={currentStats.totalContacts.value}
+          icon={Handshake}
+          trend={currentStats.totalContacts.trend}
+        />
+      </div>
+      <div className="animate-fade-in" style={{animationDelay: "0.3s"}}>
+        <StatsCard
+          title="Tempo Médio de Permanência"
+          value={currentStats.averageTime.value}
+          icon={Clock}
+          trend={currentStats.averageTime.trend}
+        />
+      </div>
+    </div>
+  );
+};
 
 const Index = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -45,32 +79,8 @@ const Index = () => {
             
             <DeviceFilter />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              <div className="animate-fade-in" style={{animationDelay: "0.1s"}}>
-                <StatsCard
-                  title="Total de Visitantes"
-                  value="1,248"
-                  icon={Users}
-                  trend={{ value: 12, isPositive: true }}
-                />
-              </div>
-              <div className="animate-fade-in" style={{animationDelay: "0.2s"}}>
-                <StatsCard
-                  title="Total de Contatos"
-                  value="532"
-                  icon={Handshake}
-                  trend={{ value: 8, isPositive: true }}
-                />
-              </div>
-              <div className="animate-fade-in" style={{animationDelay: "0.3s"}}>
-                <StatsCard
-                  title="Tempo Médio de Permanência"
-                  value="14 min"
-                  icon={Clock}
-                  trend={{ value: 5, isPositive: false }}
-                />
-              </div>
-            </div>
+            {/* Using the stats section component */}
+            <StatsSection />
             
             {/* New Gender and Age Comparison Chart */}
             <div className="mb-6 animate-fade-in" style={{animationDelay: "0.35s"}}>
