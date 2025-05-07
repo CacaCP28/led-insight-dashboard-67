@@ -9,6 +9,7 @@ interface DeviceNodeProps {
     icon: string;
     color: string;
     dimensions?: string;
+    isHighlighted?: boolean;
   };
 }
 
@@ -16,7 +17,7 @@ const DeviceNode = memo(({ data }: DeviceNodeProps) => {
   return (
     <div className="relative group">
       <div 
-        className="node px-4 py-3 rounded-md shadow-lg text-white hover-scale transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.2)]" 
+        className={`node px-4 py-3 rounded-md shadow-lg text-white hover-scale transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.2)] ${data.isHighlighted ? 'ring-2 ring-offset-2 ring-white/50' : ''}`} 
         style={{ 
           backgroundColor: `${data.color}30`,
           borderLeft: `3px solid ${data.color}`,

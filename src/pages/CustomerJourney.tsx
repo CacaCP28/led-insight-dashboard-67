@@ -36,11 +36,11 @@ const CustomerJourney = () => {
           <div className="grid grid-cols-1 gap-6 mb-6">
             <div className="animate-fade-in">
               <ChartCard title="Fluxo de Visitantes pelos Ambientes" className="h-[70vh] relative overflow-hidden">
-                {/* Floor plan background image */}
-                <div className="absolute inset-0 w-full h-full opacity-25 z-0">
+                {/* Floor plan background image - updated to use the new image */}
+                <div className="absolute inset-0 w-full h-full opacity-40 z-0">
                   <img 
-                    src="/lovable-uploads/3cb34235-931b-4d07-ad74-e82f68bdc4ad.png" 
-                    alt="Planta do estabelecimento" 
+                    src="/lovable-uploads/0d57f962-39f5-4e3d-8487-f683f70908ba.png" 
+                    alt="Planta do estabelecimento com pontos mapeados" 
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -59,12 +59,12 @@ const CustomerJourney = () => {
                   <div className="flex items-center">
                     <div className="w-12 h-12 rounded-full bg-led-purple/20 flex items-center justify-center">
                       <div className="w-8 h-8 rounded-full bg-led-purple/50 flex items-center justify-center animate-pulse">
-                        <span className="text-white font-bold">LA</span>
+                        <span className="text-white font-bold">LW</span>
                       </div>
                     </div>
                     <div className="ml-4">
-                      <p className="text-white/70 text-xs">Loja Adorno The Loft</p>
-                      <p className="text-white text-lg font-bold">532 visitantes</p>
+                      <p className="text-white/70 text-xs">LED Workstation</p>
+                      <p className="text-white text-lg font-bold">520 visitantes</p>
                     </div>
                   </div>
                 </div>
@@ -109,8 +109,8 @@ const CustomerJourney = () => {
               <div className="led-card p-5 gradient-border">
                 <h3 className="text-sm font-medium text-white text-glow mb-3">Detalhes da Visualização</h3>
                 <p className="text-white/80 text-sm mb-2">
-                  O fluxograma acima representa o movimento dos clientes pelos diferentes ambientes do local. 
-                  Cada nó mostra uma área específica com suas dimensões exatas e número de visitantes registrados.
+                  O fluxograma acima representa o movimento dos clientes pelos diferentes equipamentos e instalações LED. 
+                  Cada nó mostra um ponto específico do projeto com o número de visitantes registrados.
                 </p>
                 <p className="text-white/80 text-sm">
                   As linhas animadas indicam o caminho mais comum seguido pelos visitantes, com a espessura 
