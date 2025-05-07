@@ -21,7 +21,7 @@ const Ruptura = () => {
   const isMobile = useIsMobile();
   
   return (
-    <div className="w-full">
+    <>
       {/* Animated background with gradient overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-background to-background pointer-events-none z-0"></div>
       
@@ -89,7 +89,7 @@ const Ruptura = () => {
           Última atualização: {new Date().toLocaleString('pt-BR')}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
