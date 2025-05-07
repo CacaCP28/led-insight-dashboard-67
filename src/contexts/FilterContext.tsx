@@ -118,8 +118,8 @@ type FilterContextType = {
   setSelectedDevices: React.Dispatch<React.SetStateAction<string[]>>;
   date: Date;
   setDate: React.Dispatch<React.SetStateAction<Date>>;
-  dateRange: DateRange;
-  setDateRange: React.Dispatch<React.SetStateAction<DateRange>>;
+  dateRange: DateRange | undefined;
+  setDateRange: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
   dateFilterType: "single" | "range";
   setDateFilterType: React.Dispatch<React.SetStateAction<"single" | "range">>;
   filtersApplied: boolean;
@@ -132,7 +132,7 @@ const FilterContext = createContext<FilterContextType | undefined>(undefined);
 export function FilterProvider({ children }: { children: ReactNode }) {
   const [selectedDevices, setSelectedDevices] = useState<string[]>(["todos"]);
   const [date, setDate] = useState<Date>(new Date());
-  const [dateRange, setDateRange] = useState<DateRange>({
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: new Date(),
     to: undefined
   });
@@ -144,7 +144,7 @@ export function FilterProvider({ children }: { children: ReactNode }) {
     if (dateFilterType === "single") {
       const dateKey = format(date, "yyyy-MM-dd");
       return alternativeStats[dateKey] || baseStats;
-    } else if (dateFilterType === "range") {
+    } else if (dateFilterType === "range" && dateRange) {
       if (dateRange.from && dateRange.to) {
         // Full range selected
         return rangeStats.week;

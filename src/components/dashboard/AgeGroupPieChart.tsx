@@ -47,7 +47,7 @@ const AgeGroupPieChart = () => {
     }
     
     // If it's a range, calculate an average or use special data
-    if (dateFilterType === "range" && dateRange.from && dateRange.to) {
+    if (dateFilterType === "range" && dateRange?.from && dateRange?.to) {
       // For demo purposes, just use different data for ranges
       return [
         { name: "18-24", value: 18 },

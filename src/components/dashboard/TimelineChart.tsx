@@ -116,9 +116,9 @@ const TimelineChart = () => {
     
     // If it's a range, provide different data
     if (dateFilterType === "range") {
-      if (dateRange.from && dateRange.to) {
+      if (dateRange?.from && dateRange?.to) {
         return rangeData.week;
-      } else if (dateRange.from) {
+      } else if (dateRange?.from) {
         return rangeData.partial;
       }
     }

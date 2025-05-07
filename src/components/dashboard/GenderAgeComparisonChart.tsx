@@ -48,7 +48,7 @@ const GenderAgeComparisonChart = () => {
     }
     
     // If it's a range, calculate an average or use special data
-    if (dateFilterType === "range" && dateRange.from && dateRange.to) {
+    if (dateFilterType === "range" && dateRange?.from && dateRange?.to) {
       // For demo purposes, just use different data for ranges
       return [
         { name: '18-24', masculino: 110, feminino: 160 },

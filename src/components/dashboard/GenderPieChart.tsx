@@ -43,7 +43,7 @@ const GenderPieChart = () => {
     }
     
     // If it's a range, calculate an average or use special data
-    if (dateFilterType === "range" && dateRange.from && dateRange.to) {
+    if (dateFilterType === "range" && dateRange?.from && dateRange?.to) {
       // For demo purposes, just use different data for ranges
       return [
         { name: "Masculino", value: 52 },
@@ -52,7 +52,7 @@ const GenderPieChart = () => {
     } 
     
     // For "from" only ranges
-    if (dateFilterType === "range" && dateRange.from && !dateRange.to) {
+    if (dateFilterType === "range" && dateRange?.from && !dateRange?.to) {
       return [
         { name: "Masculino", value: 55 },
         { name: "Feminino", value: 45 }

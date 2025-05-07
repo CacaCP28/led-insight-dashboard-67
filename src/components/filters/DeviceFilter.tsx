@@ -74,7 +74,7 @@ const DeviceFilter = () => {
     if (dateFilterType === "single") {
       return date ? format(date, "PPP", { locale: ptBR }) : "Selecione a data";
     } else {
-      if (dateRange.from) {
+      if (dateRange?.from) {
         if (dateRange.to) {
           return `${format(dateRange.from, "dd/MM/yyyy")} até ${format(dateRange.to, "dd/MM/yyyy")}`;
         }
@@ -88,7 +88,7 @@ const DeviceFilter = () => {
     // Simulando a aplicação dos filtros
     const dateInfo = dateFilterType === "single" 
       ? format(date, "dd/MM/yyyy") 
-      : dateRange.from 
+      : dateRange?.from 
         ? dateRange.to 
           ? `${format(dateRange.from, "dd/MM/yyyy")} até ${format(dateRange.to, "dd/MM/yyyy")}`
           : `A partir de ${format(dateRange.from, "dd/MM/yyyy")}` 
@@ -164,7 +164,7 @@ const DeviceFilter = () => {
               variant="outline"
               className={cn(
                 "w-[250px] justify-start text-left font-normal bg-muted",
-                !date && !dateRange.from && "text-muted-foreground"
+                !date && !dateRange?.from && "text-muted-foreground"
               )}
             >
               {dateFilterType === "single" ? (
