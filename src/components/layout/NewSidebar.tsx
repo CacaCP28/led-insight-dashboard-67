@@ -117,7 +117,13 @@ export function NewSidebar() {
           collapsed && "justify-center"
         )}>
           {!collapsed && <span className="text-sm">Desenvolvido por</span>}
-          <span className="font-bold">Global.AI</span>
+          <a href="https://globalia.com.br" target="_blank" rel="noopener noreferrer">
+            <img 
+              src="/lovable-uploads/2ebdaa22-5e48-4118-9f3e-0d9083f4df44.png" 
+              alt="GlobalIA" 
+              className="h-4" 
+            />
+          </a>
         </div>
       </div>
     </div>

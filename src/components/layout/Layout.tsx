@@ -5,7 +5,7 @@ import CustomSidebar from "./CustomSidebar";
 import Header from "./Header";
 import { useIsMobile } from "../../hooks/use-mobile";
 
-export const Layout = () => {
+export const Layout = ({ children }) => {
   const isMobile = useIsMobile();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   
@@ -38,7 +38,7 @@ export const Layout = () => {
       <div className="flex flex-col flex-1 overflow-hidden">
         <Header toggleSidebar={toggleSidebar} />
         <main className="flex-1 overflow-y-auto p-2 md:p-6">
-          <Outlet />
+          {children || <Outlet />}
         </main>
       </div>
     </div>

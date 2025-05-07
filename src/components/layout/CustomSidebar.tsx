@@ -96,9 +96,13 @@ const CustomSidebar = () => {
       <div className="p-4 mt-auto">
         <div className="bg-[#323a52] rounded-md p-2 flex items-center">
           <span className="text-xs text-purple-300 mr-1">Desenvolvido por</span>
-          <span className="text-white font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent px-1">
-            GlobalAI
-          </span>
+          <a href="https://globalia.com.br" target="_blank" rel="noopener noreferrer">
+            <img 
+              src="/lovable-uploads/2ebdaa22-5e48-4118-9f3e-0d9083f4df44.png" 
+              alt="GlobalIA" 
+              className="h-4" 
+            />
+          </a>
         </div>
       </div>
     </div>
