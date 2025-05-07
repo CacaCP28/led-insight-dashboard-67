@@ -97,7 +97,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
             <img 
               src="/lovable-uploads/298f42a6-421f-420f-95a8-246670d2cd86.png" 
               alt="Global IA Logo" 
-              className="h-5 w-auto ml-2" // Increased from h-4 to h-5
+              className="h-4 w-auto ml-2" // Reverted back to h-4 from h-5
             />
           </a>
         )}
