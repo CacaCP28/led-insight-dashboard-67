@@ -31,7 +31,7 @@ const devices = [
 const DeviceFilter = () => {
   const [selectedDevices, setSelectedDevices] = useState<string[]>(["todos"]);
   const [date, setDate] = useState<Date>(new Date());
-  const [open, setOpen] = useState(false);
+  const [openDevicePopover, setOpenDevicePopover] = useState(false);
 
   const toggleDevice = (value: string) => {
     setSelectedDevices((current) => {
@@ -59,7 +59,7 @@ const DeviceFilter = () => {
     <div className="flex items-center flex-wrap gap-4 p-4 mb-6 led-card animate-fade-in">
       <div className="flex flex-col gap-1">
         <div className="text-xs text-white/70 mb-1">Dispositivos</div>
-        <Popover open={open} onOpenChange={setOpen}>
+        <Popover open={openDevicePopover} onOpenChange={setOpenDevicePopover}>
           <PopoverTrigger asChild>
             <Button 
               variant="outline" 
@@ -87,7 +87,10 @@ const DeviceFilter = () => {
                 {devices.map((device) => (
                   <CommandItem
                     key={device.value}
-                    onSelect={() => toggleDevice(device.value)}
+                    onSelect={() => {
+                      toggleDevice(device.value);
+                      setOpenDevicePopover(false);
+                    }}
                   >
                     <div className="flex items-center justify-between w-full">
                       <span>{device.label}</span>
