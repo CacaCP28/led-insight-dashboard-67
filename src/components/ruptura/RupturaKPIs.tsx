@@ -14,7 +14,7 @@ const RupturaKPIs = () => {
           value: 0.8,
           isPositive: true
         }}
-        className="bg-gradient-to-br from-amber-500/50 to-purple-500/50"
+        className="bg-gradient-to-br from-amber-500/30 to-purple-500/30"
       />
       <StatsCard
         title="Tempo Médio p/ Reposição"
@@ -24,7 +24,7 @@ const RupturaKPIs = () => {
           value: 5,
           isPositive: false
         }}
-        className="bg-gradient-to-br from-orange-500/50 to-pink-500/50"
+        className="bg-gradient-to-br from-orange-500/30 to-pink-500/30"
       />
       <StatsCard
         title="SKUs em Ruptura"
@@ -34,7 +34,7 @@ const RupturaKPIs = () => {
           value: 12,
           isPositive: true
         }}
-        className="bg-gradient-to-br from-red-500/50 to-purple-500/50"
+        className="bg-gradient-to-br from-red-500/30 to-purple-500/30"
       />
       <StatsCard
         title="Perda Estimada (Hoje)"
@@ -44,7 +44,7 @@ const RupturaKPIs = () => {
           value: 1450,
           isPositive: false
         }}
-        className="bg-gradient-to-br from-red-500/50 to-orange-500/50"
+        className="bg-gradient-to-br from-red-500/30 to-orange-500/30"
       />
     </div>
   );

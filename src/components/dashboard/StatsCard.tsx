@@ -23,13 +23,13 @@ const StatsCard: React.FC<StatsCardProps> = ({
 }) => {
   return (
     <div className={cn(
-      "led-card p-5 flex flex-col animate-fade-in rounded-xl border border-white/5 shadow-xl",
-      "backdrop-blur-xl hover:-translate-y-1 transition-all duration-300",
+      "led-card p-5 flex flex-col animate-fade-in rounded-xl border border-white/10 shadow-xl",
+      "bg-gradient-to-br from-led-purple/30 to-led-pink/30 backdrop-blur-xl hover:-translate-y-1 transition-all duration-300",
       className
     )}>
       <div className="flex items-start justify-between mb-4">
         <h3 className="text-sm font-medium text-white text-glow">{title}</h3>
-        <div className="led-icon-container bg-white/10 backdrop-blur-md shadow-lg rounded-xl p-2">
+        <div className="led-icon-container bg-white/15 backdrop-blur-md shadow-lg rounded-xl p-2">
           <Icon size={20} className="drop-shadow-md" />
         </div>
       </div>

@@ -13,7 +13,7 @@ import Settings from './pages/Settings';
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-led-background overflow-hidden">
+      <div className="min-h-screen bg-led-background">
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
@@ -24,7 +24,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-        <Toaster />
+        <Toaster richColors />
       </div>
     </BrowserRouter>
   );

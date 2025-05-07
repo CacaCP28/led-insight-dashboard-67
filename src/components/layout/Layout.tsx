@@ -14,13 +14,13 @@ const Layout: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-led-background">
+    <div className="flex h-screen overflow-hidden bg-gradient-to-br from-led-background to-led-dark-purple/80">
       {!isMobile && <CustomSidebar />}
       {isMobile && sidebarOpen && <CustomSidebar />}
       
       <div className="flex flex-col flex-1 overflow-hidden">
         <Header toggleSidebar={toggleSidebar} />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto p-2">
           <Outlet />
         </main>
       </div>
