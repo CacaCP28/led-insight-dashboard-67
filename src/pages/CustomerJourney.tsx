@@ -36,16 +36,18 @@ const CustomerJourney = () => {
           <div className="grid grid-cols-1 gap-6 mb-6">
             <div className="animate-fade-in">
               <ChartCard title="Fluxo de Visitantes pelos Ambientes" className="h-[70vh] relative overflow-hidden">
-                {/* Floor plan background image - positioned for better scaling */}
+                {/* Floor plan background image - perfectly positioned for node alignment */}
                 <div className="absolute inset-0 w-full h-full opacity-40 z-0 pointer-events-none">
-                  <img 
-                    src="/lovable-uploads/2de4d3ee-9bb2-4863-b631-14fb33780f8d.png" 
-                    alt="Planta do estabelecimento com pontos mapeados" 
-                    className="w-full h-full object-contain"
-                  />
+                  <div className="w-full h-full relative">
+                    <img 
+                      src="/lovable-uploads/2de4d3ee-9bb2-4863-b631-14fb33780f8d.png" 
+                      alt="Planta do estabelecimento com pontos mapeados" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 </div>
                 
-                {/* Flow chart overlay */}
+                {/* Flow chart overlay - will scale with the background image */}
                 <div className="relative z-10 w-full h-full">
                   <RouteFlow />
                 </div>

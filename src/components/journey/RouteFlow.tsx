@@ -17,7 +17,7 @@ const nodeTypes = {
 };
 
 export const RouteFlow = () => {
-  // Initialize nodes based on the exact positions in the image
+  // Initialize nodes with adjusted positions to match the background image
   const initialNodes: Node[] = [
     {
       id: 'logo-adesivo-1',
@@ -26,9 +26,9 @@ export const RouteFlow = () => {
         visitors: 450,
         icon: '🔵',
         color: '#D946EF',
-        dimensions: '2.21 x 0.46 metros',
+        dimensions: '2.21 x 0.46m',
       },
-      position: { x: 80, y: 40 },
+      position: { x: 110, y: 60 },
       type: 'deviceNode',
       draggable: false,
     },
@@ -39,9 +39,9 @@ export const RouteFlow = () => {
         visitors: 420,
         icon: '⬜',
         color: '#9b87f5',
-        dimensions: 'MDF Black Piano',
+        dimensions: 'MDF Black',
       },
-      position: { x: 80, y: 120 },
+      position: { x: 110, y: 140 },
       type: 'deviceNode',
       draggable: false,
     },
@@ -52,9 +52,9 @@ export const RouteFlow = () => {
         visitors: 400,
         icon: '🧱',
         color: '#8064e8',
-        dimensions: '2.5 x 2.5 metros',
+        dimensions: '2.5 x 2.5m',
       },
-      position: { x: 160, y: 180 },
+      position: { x: 180, y: 190 },
       type: 'deviceNode',
       draggable: false,
     },
@@ -65,9 +65,9 @@ export const RouteFlow = () => {
         visitors: 380,
         icon: '💡',
         color: '#6E59A5',
-        dimensions: '2.5 x 0.52 metros',
+        dimensions: '2.5 x 0.52m',
       },
-      position: { x: 160, y: 260 },
+      position: { x: 180, y: 280 },
       type: 'deviceNode',
       draggable: false,
     },
@@ -78,9 +78,9 @@ export const RouteFlow = () => {
         visitors: 360,
         icon: '🧱',
         color: '#D946EF',
-        dimensions: '2.5 x 2.5 metros',
+        dimensions: '2.5 x 2.5m',
       },
-      position: { x: 240, y: 290 },
+      position: { x: 250, y: 310 },
       type: 'deviceNode',
       draggable: false,
     },
@@ -91,61 +91,61 @@ export const RouteFlow = () => {
         visitors: 340,
         icon: '💡',
         color: '#c639d8',
-        dimensions: '2.5 x 0.52 metros',
+        dimensions: '2.5 x 0.52m',
       },
-      position: { x: 240, y: 340 },
+      position: { x: 250, y: 370 },
       type: 'deviceNode',
       draggable: false,
     },
     {
       id: 'piso-elevado-2',
       data: { 
-        label: 'Piso elevado Led 10cm',
+        label: 'Piso elevado Led',
         visitors: 320,
         icon: '⬜',
         color: '#9b87f5',
-        dimensions: '',
+        dimensions: '10cm',
       },
-      position: { x: 495, y: 40 },
+      position: { x: 445, y: 60 },
       type: 'deviceNode',
       draggable: false,
     },
     {
       id: 'logo-adesivo-2',
       data: { 
-        label: 'Logo Adesivo The Led',
+        label: 'Logo Adesivo',
         visitors: 300,
         icon: '🔵',
         color: '#8064e8',
-        dimensions: '1.02 x 0.21 metros',
+        dimensions: '1.02 x 0.21m',
       },
-      position: { x: 670, y: 40 },
+      position: { x: 610, y: 60 },
       type: 'deviceNode',
       draggable: false,
     },
     {
       id: 'logo-adesivo-3',
       data: { 
-        label: 'Logo Adesivo The Led Bar',
+        label: 'Logo Adesivo Bar',
         visitors: 280,
         icon: '🔵',
         color: '#6E59A5',
-        dimensions: '1.35 x 0.28 metros',
+        dimensions: '1.35 x 0.28m',
       },
-      position: { x: 420, y: 85 },
+      position: { x: 370, y: 105 },
       type: 'deviceNode',
       draggable: false,
     },
     {
       id: 'logo-adesivo-4',
       data: { 
-        label: 'Logo Adesivo The Led Bar',
+        label: 'Logo Adesivo Bar',
         visitors: 260,
         icon: '🔵',
         color: '#D946EF',
-        dimensions: '1.35 x 0.28 metros',
+        dimensions: '1.35 x 0.28m',
       },
-      position: { x: 420, y: 200 },
+      position: { x: 370, y: 220 },
       type: 'deviceNode',
       draggable: false,
     },
@@ -156,9 +156,9 @@ export const RouteFlow = () => {
         visitors: 240,
         icon: '☂️',
         color: '#c639d8',
-        dimensions: '2.5 x 0.5 x 10 metros',
+        dimensions: '2.5 x 0.5 x 10m',
       },
-      position: { x: 420, y: 240 },
+      position: { x: 370, y: 280 },
       type: 'deviceNode',
       draggable: false,
     },
@@ -169,9 +169,9 @@ export const RouteFlow = () => {
         visitors: 220,
         icon: '✨',
         color: '#9b87f5',
-        dimensions: '1.0 x 2.0 metros',
+        dimensions: '1.0 x 2.0m',
       },
-      position: { x: 735, y: 280 },
+      position: { x: 675, y: 320 },
       type: 'deviceNode',
       draggable: false,
     },
@@ -182,27 +182,28 @@ export const RouteFlow = () => {
         visitors: 200,
         icon: '📊',
         color: '#8064e8',
-        dimensions: '2.5 x 1.0 metros',
+        dimensions: '2.5 x 1.0m',
       },
-      position: { x: 735, y: 30 },
+      position: { x: 675, y: 130 },
       type: 'deviceNode',
       draggable: false,
     },
   ];
 
   // Define the paths between the points with appropriate styling
+  // Adjusted to match the new node positions
   const initialEdges: Edge[] = [
-    { id: 'e1-2', source: 'logo-adesivo-1', target: 'piso-elevado-1', animated: true, style: { stroke: '#D946EF', strokeWidth: 2 } },
-    { id: 'e2-3', source: 'piso-elevado-1', target: 'parede-led-1', animated: true, style: { stroke: '#9b87f5', strokeWidth: 2 } },
-    { id: 'e3-4', source: 'parede-led-1', target: 'kits-5', animated: true, style: { stroke: '#8064e8', strokeWidth: 2 } },
-    { id: 'e4-5', source: 'kits-5', target: 'parede-led-2', animated: true, style: { stroke: '#6E59A5', strokeWidth: 2 } },
-    { id: 'e5-6', source: 'parede-led-2', target: 'kits-50-2', animated: true, style: { stroke: '#D946EF', strokeWidth: 2 } },
-    { id: 'e3-9', source: 'parede-led-1', target: 'logo-adesivo-3', animated: true, style: { stroke: '#8064e8', strokeWidth: 2 } },
-    { id: 'e9-10', source: 'logo-adesivo-3', target: 'logo-adesivo-4', animated: true, style: { stroke: '#6E59A5', strokeWidth: 2 } },
-    { id: 'e10-11', source: 'logo-adesivo-4', target: 'teto-bar', animated: true, style: { stroke: '#D946EF', strokeWidth: 2 } },
-    { id: 'e7-8', source: 'piso-elevado-2', target: 'logo-adesivo-2', animated: true, style: { stroke: '#9b87f5', strokeWidth: 2 } },
-    { id: 'e8-13', source: 'logo-adesivo-2', target: 'xpe-50', animated: true, style: { stroke: '#8064e8', strokeWidth: 2 } },
-    { id: 'e11-12', source: 'teto-bar', target: 'led-supreme', animated: true, style: { stroke: '#c639d8', strokeWidth: 2 } },
+    { id: 'e1-2', source: 'logo-adesivo-1', target: 'piso-elevado-1', animated: true, style: { stroke: '#D946EF', strokeWidth: 1.5 } },
+    { id: 'e2-3', source: 'piso-elevado-1', target: 'parede-led-1', animated: true, style: { stroke: '#9b87f5', strokeWidth: 1.5 } },
+    { id: 'e3-4', source: 'parede-led-1', target: 'kits-5', animated: true, style: { stroke: '#8064e8', strokeWidth: 1.5 } },
+    { id: 'e4-5', source: 'kits-5', target: 'parede-led-2', animated: true, style: { stroke: '#6E59A5', strokeWidth: 1.5 } },
+    { id: 'e5-6', source: 'parede-led-2', target: 'kits-50-2', animated: true, style: { stroke: '#D946EF', strokeWidth: 1.5 } },
+    { id: 'e3-9', source: 'parede-led-1', target: 'logo-adesivo-3', animated: true, style: { stroke: '#8064e8', strokeWidth: 1.5 } },
+    { id: 'e9-10', source: 'logo-adesivo-3', target: 'logo-adesivo-4', animated: true, style: { stroke: '#6E59A5', strokeWidth: 1.5 } },
+    { id: 'e10-11', source: 'logo-adesivo-4', target: 'teto-bar', animated: true, style: { stroke: '#D946EF', strokeWidth: 1.5 } },
+    { id: 'e7-8', source: 'piso-elevado-2', target: 'logo-adesivo-2', animated: true, style: { stroke: '#9b87f5', strokeWidth: 1.5 } },
+    { id: 'e8-13', source: 'logo-adesivo-2', target: 'xpe-50', animated: true, style: { stroke: '#8064e8', strokeWidth: 1.5 } },
+    { id: 'e11-12', source: 'teto-bar', target: 'led-supreme', animated: true, style: { stroke: '#c639d8', strokeWidth: 1.5 } },
   ];
 
   return (
@@ -220,9 +221,11 @@ export const RouteFlow = () => {
           elementsSelectable={false}
           zoomOnScroll={true}
           panOnScroll={true}
-          panOnDrag={false}
+          panOnDrag={true}
           preventScrolling={false}
           attributionPosition="bottom-right"
+          minZoom={0.5}
+          maxZoom={2}
         >
           <Controls 
             className="bg-led-dark/50 text-white border border-white/10 rounded-md"
