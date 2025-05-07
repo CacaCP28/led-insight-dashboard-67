@@ -33,24 +33,36 @@ const CustomerJourney = () => {
           
           <div className="grid grid-cols-1 gap-6 mb-6">
             <div className="animate-fade-in">
-              <ChartCard title="Fluxo de Visitantes pelos Dispositivos" className="h-[70vh]">
-                <RouteFlow />
+              <ChartCard title="Fluxo de Visitantes pelos Ambientes" className="h-[70vh] relative overflow-hidden">
+                {/* Floor plan image */}
+                <div className="absolute inset-0 w-full h-full opacity-25 z-0">
+                  <img 
+                    src="/lovable-uploads/6ccc659a-2694-47ea-bd62-1b61bbb38f49.png" 
+                    alt="Planta do estabelecimento" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                
+                {/* Flow chart overlay */}
+                <div className="relative z-10 w-full h-full">
+                  <RouteFlow />
+                </div>
               </ChartCard>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="animate-fade-in" style={{animationDelay: "0.3s"}}>
                 <div className="led-card p-5 gradient-border hover-lift">
-                  <h3 className="text-sm font-medium text-white text-glow mb-2">Dispositivo Mais Visitado</h3>
+                  <h3 className="text-sm font-medium text-white text-glow mb-2">Área Mais Visitada</h3>
                   <div className="flex items-center">
                     <div className="w-12 h-12 rounded-full bg-led-purple/20 flex items-center justify-center">
                       <div className="w-8 h-8 rounded-full bg-led-purple/50 flex items-center justify-center animate-pulse">
-                        <span className="text-white font-bold">D3</span>
+                        <span className="text-white font-bold">LA</span>
                       </div>
                     </div>
                     <div className="ml-4">
-                      <p className="text-white/70 text-xs">Vitrine Principal</p>
-                      <p className="text-white text-lg font-bold">468 visitantes</p>
+                      <p className="text-white/70 text-xs">Loja Adorno The Loft</p>
+                      <p className="text-white text-lg font-bold">532 visitantes</p>
                     </div>
                   </div>
                 </div>
@@ -58,16 +70,16 @@ const CustomerJourney = () => {
               
               <div className="animate-fade-in" style={{animationDelay: "0.4s"}}>
                 <div className="led-card p-5 gradient-border hover-lift">
-                  <h3 className="text-sm font-medium text-white text-glow mb-2">Tempo Médio por Dispositivo</h3>
+                  <h3 className="text-sm font-medium text-white text-glow mb-2">Tempo Médio por Área</h3>
                   <div className="flex items-center">
                     <div className="w-12 h-12 rounded-full bg-led-orange/20 flex items-center justify-center">
                       <div className="w-8 h-8 rounded-full bg-led-orange/50 flex items-center justify-center animate-pulse">
-                        <span className="text-white font-bold">8m</span>
+                        <span className="text-white font-bold">12m</span>
                       </div>
                     </div>
                     <div className="ml-4">
                       <p className="text-white/70 text-xs">Tempo médio</p>
-                      <p className="text-white text-lg font-bold">+12% que semana passada</p>
+                      <p className="text-white text-lg font-bold">+15% que semana passada</p>
                     </div>
                   </div>
                 </div>
@@ -83,8 +95,8 @@ const CustomerJourney = () => {
                       </div>
                     </div>
                     <div className="ml-4">
-                      <p className="text-white/70 text-xs">Dispositivo → Venda</p>
-                      <p className="text-white text-lg font-bold">+5% que meta</p>
+                      <p className="text-white/70 text-xs">Visitante → Cliente</p>
+                      <p className="text-white text-lg font-bold">+8% que meta</p>
                     </div>
                   </div>
                 </div>

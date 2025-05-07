@@ -17,66 +17,66 @@ const nodeTypes = {
 };
 
 export const RouteFlow = () => {
-  // Initialize nodes representing devices in the store
+  // Initialize nodes representing areas in the floor plan
   const initialNodes: Node[] = [
     {
       id: 'entrance',
       data: { 
-        label: 'Entrada',
+        label: 'Entrada Principal',
         visitors: 1248,
         icon: '🚪',
         color: '#9b87f5'
       },
-      position: { x: 250, y: 50 },
+      position: { x: 100, y: 50 },
       type: 'deviceNode',
     },
     {
       id: 'device1',
       data: { 
-        label: 'Vitrine Principal',
-        visitors: 468,
-        icon: '📱',
+        label: 'Loja Adorno The Loft',
+        visitors: 532,
+        icon: '🛍️',
         color: '#D946EF'
       },
-      position: { x: 100, y: 200 },
+      position: { x: 400, y: 50 },
       type: 'deviceNode',
     },
     {
       id: 'device2',
       data: { 
-        label: 'Setor de Roupas',
-        visitors: 312,
-        icon: '👕',
+        label: 'Parede Led',
+        visitors: 468,
+        icon: '✨',
         color: '#8064e8'
       },
-      position: { x: 400, y: 200 },
+      position: { x: 150, y: 200 },
       type: 'deviceNode',
     },
     {
       id: 'device3',
       data: { 
-        label: 'Provador Virtual',
-        visitors: 286,
-        icon: '🔍',
+        label: 'The Loft Bar',
+        visitors: 312,
+        icon: '🍹',
         color: '#6E59A5'
       },
-      position: { x: 250, y: 350 },
+      position: { x: 350, y: 200 },
       type: 'deviceNode',
     },
     {
       id: 'checkout',
       data: { 
-        label: 'Caixa',
+        label: 'Loft Supporte',
         visitors: 210,
-        icon: '💰',
+        icon: '👥',
         color: '#c639d8'
       },
-      position: { x: 500, y: 450 },
+      position: { x: 600, y: 250 },
       type: 'deviceNode',
     },
   ];
 
-  // Define the edges (connections between devices)
+  // Define the edges (connections between areas)
   const initialEdges: Edge[] = [
     { id: 'e1-1', source: 'entrance', target: 'device1', animated: true, style: { stroke: '#9b87f5', strokeWidth: 3 } },
     { id: 'e1-2', source: 'entrance', target: 'device2', animated: true, style: { stroke: '#9b87f5', strokeWidth: 2 } },
@@ -96,9 +96,8 @@ export const RouteFlow = () => {
           edges={edges}
           nodeTypes={nodeTypes}
           fitView
-          className="bg-led-dark"
+          className="bg-transparent"
         >
-          <Background color="#ffffff10" gap={16} />
           <Controls className="bg-led-dark/50 text-white border border-white/10 rounded-md" />
           <MiniMap 
             nodeStrokeWidth={3}
