@@ -3,7 +3,15 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X, Home, Settings } from "lucide-react";
+import { 
+  Menu, 
+  X, 
+  LayoutGrid, 
+  Users, 
+  BarChart3, 
+  HardDrive, 
+  Settings 
+} from "lucide-react";
 import { Separator } from "../ui/separator";
 import { useMobile } from "@/hooks/use-mobile";
 import SidebarLogo from "./SidebarLogo";
@@ -20,18 +28,38 @@ interface SidebarProps {
   className?: string;
 }
 
-// Default sidebar items
+// Default sidebar items with all the original pages
 const defaultItems: SidebarItem[] = [
   {
-    title: "Home",
+    title: "Dashboard",
     path: "/",
-    icon: <Home size={16} />,
+    icon: <LayoutGrid size={16} />,
   },
   {
-    title: "Settings",
+    title: "Jornada do Cliente",
+    path: "/customer-journey",
+    icon: <Users size={16} />,
+  },
+  {
+    title: "Ruptura",
+    path: "/ruptura",
+    icon: <BarChart3 size={16} />,
+  },
+  {
+    title: "Relatórios",
+    path: "/reports",
+    icon: <BarChart3 size={16} />,
+  },
+  {
+    title: "Dispositivos",
+    path: "/devices",
+    icon: <HardDrive size={16} />,
+  },
+  {
+    title: "Configurações",
     path: "/settings",
     icon: <Settings size={16} />,
-  }
+  },
 ];
 
 export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
