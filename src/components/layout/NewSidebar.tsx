@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { ChevronLeft, Grid2x2, LayoutList, ChartBar, Laptop, Settings } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { ChevronLeft, Grid2x2, LayoutList, ChartBar, Laptop, Settings, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useMobile } from '@/hooks/use-mobile';
@@ -24,6 +24,11 @@ const navItems: NavItem[] = [
     path: '/customer-journey',
   },
   {
+    icon: <BarChart3 className="h-5 w-5" />,
+    label: 'Ruptura',
+    path: '/ruptura',
+  },
+  {
     icon: <ChartBar className="h-5 w-5" />,
     label: 'Relatórios',
     path: '/reports',
@@ -41,17 +46,27 @@ const navItems: NavItem[] = [
 ];
 
 export function NewSidebar() {
-  const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
   const isMobile = useMobile();
+  const [collapsed, setCollapsed] = useState(false);
+  
+  // Store the collapsed state in localStorage
+  useEffect(() => {
+    const savedState = localStorage.getItem('sidebarCollapsed');
+    if (savedState) {
+      setCollapsed(savedState === 'true');
+    }
+  }, []);
 
   const toggleSidebar = () => {
-    setCollapsed(!collapsed);
+    const newState = !collapsed;
+    setCollapsed(newState);
+    localStorage.setItem('sidebarCollapsed', String(newState));
   };
 
   return (
     <div className={cn(
-      "flex flex-col h-screen bg-[#1A1F2C] text-white relative transition-all duration-300",
+      "flex flex-col h-full bg-[#1A1F2C] text-white relative transition-all duration-300 ease-in-out",
       collapsed ? "w-16" : isMobile ? "w-full" : "w-64"
     )}>
       {/* Sidebar Header */}
@@ -91,19 +106,21 @@ export function NewSidebar() {
       </div>
 
       {/* Navigation Links */}
-      <div className="flex-grow">
+      <div className="flex-grow overflow-y-auto scrollbar-hide">
         <nav className="mt-4 px-2 space-y-1">
           {navItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) => cn(
-                "flex items-center gap-3 px-3 py-3 rounded-lg text-sm",
-                isActive ? "bg-[#36304A] text-[#9b87f5]" : "text-white hover:bg-[#2A2F3C]",
+                "flex items-center gap-3 px-3 py-3 rounded-lg text-sm transition-all duration-200",
+                isActive 
+                  ? "bg-[#36304A] text-[#9b87f5] shadow-lg" 
+                  : "text-white hover:bg-[#2A2F3C]",
                 collapsed && "justify-center"
               )}
             >
-              <div>{item.icon}</div>
+              <span className="breathing-glow rounded-md p-1">{item.icon}</span>
               {!collapsed && <span>{item.label}</span>}
             </NavLink>
           ))}
@@ -113,7 +130,7 @@ export function NewSidebar() {
       {/* Footer */}
       <div className="p-4 border-t border-gray-700">
         <div className={cn(
-          "flex items-center gap-2 rounded-lg bg-gradient-to-r from-purple-500 to-orange-500 p-2",
+          "flex items-center gap-2 rounded-lg bg-gradient-to-r from-purple-500/50 to-orange-500/50 p-2",
           collapsed && "justify-center"
         )}>
           {!collapsed && <span className="text-sm">Desenvolvido por</span>}

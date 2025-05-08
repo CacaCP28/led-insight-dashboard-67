@@ -13,17 +13,20 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { DrawerTrigger } from "@/components/ui/drawer";
 
 interface HeaderProps {
   title?: string;
   sidebarCollapsed?: boolean;
   toggleSidebar?: () => void;
+  sidebarOpen?: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
   title, 
   sidebarCollapsed, 
-  toggleSidebar 
+  toggleSidebar,
+  sidebarOpen
 }) => {
   const today = new Date();
   const formattedDate = format(today, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR });
@@ -33,15 +36,17 @@ const Header: React.FC<HeaderProps> = ({
     <header className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-white/5 transition-all duration-300 ease-in-out sticky top-0 z-10 backdrop-blur-sm bg-led-dark/80">
       <div className="flex items-center">
         {toggleSidebar && isMobile && (
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="mr-2 text-white hover:bg-white/10 hover:text-led-purple"
-            onClick={toggleSidebar}
-          >
-            <Menu size={24} className="text-glow" />
-            <span className="sr-only">Toggle menu</span>
-          </Button>
+          <DrawerTrigger asChild>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="mr-2 text-white hover:bg-white/10 hover:text-led-purple"
+              onClick={toggleSidebar}
+            >
+              <Menu size={24} className="text-glow" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </DrawerTrigger>
         )}
         
         {isMobile && (
