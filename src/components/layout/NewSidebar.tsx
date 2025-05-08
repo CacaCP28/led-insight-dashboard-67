@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Settings } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { useMobile } from "@/hooks/use-mobile";
 import SidebarLogo from "./SidebarLogo";
@@ -16,11 +16,25 @@ export interface SidebarItem {
 }
 
 interface SidebarProps {
-  items: SidebarItem[];
+  items?: SidebarItem[];
   className?: string;
 }
 
-export function NewSidebar({ items, className }: SidebarProps) {
+// Default sidebar items
+const defaultItems: SidebarItem[] = [
+  {
+    title: "Home",
+    path: "/",
+    icon: <Home size={16} />,
+  },
+  {
+    title: "Settings",
+    path: "/settings",
+    icon: <Settings size={16} />,
+  }
+];
+
+export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isMobile = useMobile();
