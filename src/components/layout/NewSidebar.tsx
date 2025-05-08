@@ -17,6 +17,7 @@ import {
 import { Separator } from "../ui/separator";
 import { useMobile } from "@/hooks/use-mobile";
 import SidebarLogo from "./SidebarLogo";
+import GlobalFooter from "./GlobalFooter";
 
 export interface SidebarItem {
   title: string;
@@ -88,58 +89,66 @@ export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
 
       <div
         className={cn(
-          "bg-background flex-col h-full transition-all duration-300",
+          "bg-background flex flex-col h-full transition-all duration-300",
           isMobile 
             ? "fixed inset-y-0 left-0 z-40 transform transition-transform duration-300 ease-in-out" 
-            : "flex",
+            : "",
           isMobile && !open && "-translate-x-full",
           isMobile && open && "translate-x-0",
           !isMobile && collapsed ? "w-[80px]" : "w-[280px]",
           className
         )}
       >
-        <div className="flex items-center justify-between p-4">
-          {/* Only show logo when not collapsed or on mobile */}
-          {(!collapsed || isMobile) && <SidebarLogo />}
-          
-          {/* Collapse toggle button - only on desktop */}
-          {!isMobile && (
-            <Button 
-              onClick={toggleCollapse} 
-              size="icon" 
-              variant="ghost" 
-              className="ml-auto"
-            >
-              {collapsed ? <ChevronsRight size={16} /> : <ChevronsLeft size={16} />}
-            </Button>
-          )}
-        </div>
-        
-        <Separator />
-
-        <div className="flex flex-col gap-1 p-4">
-          {items.map((item, index) => {
-            const isActive = location.pathname === item.path;
-
-            return (
-              <Button
-                key={index}
-                variant={isActive ? "secondary" : "ghost"}
-                className={cn(
-                  "w-full justify-start gap-2 text-left", 
-                  item.disabled && "opacity-50 pointer-events-none",
-                  collapsed && !isMobile && "justify-center px-2"
-                )}
-                disabled={item.disabled}
-                asChild
+        <div className="flex flex-col h-full overflow-hidden">
+          <div className="flex items-center justify-between p-4">
+            {/* Only show logo when not collapsed or on mobile */}
+            {(!collapsed || isMobile) && <SidebarLogo />}
+            
+            {/* Collapse toggle button - only on desktop */}
+            {!isMobile && (
+              <Button 
+                onClick={toggleCollapse} 
+                size="icon" 
+                variant="ghost" 
+                className="ml-auto"
               >
-                <Link to={item.disabled ? "#" : item.path}>
-                  {item.icon}
-                  {(!collapsed || isMobile) && <span>{item.title}</span>}
-                </Link>
+                {collapsed ? <ChevronsRight size={16} /> : <ChevronsLeft size={16} />}
               </Button>
-            );
-          })}
+            )}
+          </div>
+          
+          <Separator />
+
+          <div className="flex-1 overflow-y-auto no-scrollbar">
+            <div className="flex flex-col gap-1 p-4">
+              {items.map((item, index) => {
+                const isActive = location.pathname === item.path;
+
+                return (
+                  <Button
+                    key={index}
+                    variant={isActive ? "secondary" : "ghost"}
+                    className={cn(
+                      "w-full justify-start gap-2 text-left", 
+                      item.disabled && "opacity-50 pointer-events-none",
+                      collapsed && !isMobile && "justify-center px-2"
+                    )}
+                    disabled={item.disabled}
+                    asChild
+                  >
+                    <Link to={item.disabled ? "#" : item.path}>
+                      {item.icon}
+                      {(!collapsed || isMobile) && <span>{item.title}</span>}
+                    </Link>
+                  </Button>
+                );
+              })}
+            </div>
+          </div>
+          
+          <div className={cn(collapsed && !isMobile ? "w-[80px]" : "w-full")}>
+            <GlobalFooter className={collapsed && !isMobile ? "px-1 py-2" : ""} />
+          </div>
         </div>
       </div>
     </>
