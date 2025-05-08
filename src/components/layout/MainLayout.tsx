@@ -2,12 +2,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
-import NewSidebar from "./NewSidebar";
-import { useMediaQuery } from "../../hooks/use-mobile";
+import { NewSidebar } from "./NewSidebar";
+import { useIsMobile } from "../../hooks/use-mobile";
 import GlobalFooter from "./GlobalFooter";
 
 const MainLayout = () => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useIsMobile();
 
   return (
     <div className="flex flex-col min-h-screen">
