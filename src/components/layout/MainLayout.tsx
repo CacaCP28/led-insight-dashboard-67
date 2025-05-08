@@ -11,20 +11,25 @@ const MainLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <div className="flex flex-1 overflow-hidden">
+      <Header className="fixed top-0 left-0 right-0 z-50" />
+      <div className="flex flex-1 pt-16 overflow-hidden">
         {!isMobile && (
-          <aside className="w-64 flex-shrink-0">
-            <NewSidebar />
+          <aside className="w-64 flex-shrink-0 fixed left-0 top-16 bottom-0 overflow-y-auto">
+            <div className="flex flex-col h-full">
+              <div className="flex-grow">
+                <NewSidebar />
+              </div>
+              <GlobalFooter />
+            </div>
           </aside>
         )}
-        <main className="flex-grow overflow-auto">
+        <main className="flex-grow overflow-auto pl-0 md:pl-64">
           <div className="container mx-auto py-6 px-4">
             <Outlet />
           </div>
         </main>
       </div>
-      <GlobalFooter />
+      {isMobile && <GlobalFooter />}
     </div>
   );
 };

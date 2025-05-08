@@ -1,4 +1,3 @@
-
 import React from "react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -20,20 +19,22 @@ interface HeaderProps {
   sidebarCollapsed?: boolean;
   toggleSidebar?: () => void;
   sidebarOpen?: boolean;
+  className?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
   title, 
   sidebarCollapsed, 
   toggleSidebar,
-  sidebarOpen
+  sidebarOpen,
+  className
 }) => {
   const today = new Date();
   const formattedDate = format(today, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR });
   const isMobile = useIsMobile();
 
   return (
-    <header className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-white/5 transition-all duration-300 ease-in-out sticky top-0 z-10 backdrop-blur-sm bg-led-dark/80">
+    <header className={cn("flex items-center justify-between h-16 px-4 sm:px-6 border-b border-white/5 transition-all duration-300 ease-in-out bg-led-dark/80 backdrop-blur-sm", className)}>
       <div className="flex items-center">
         {toggleSidebar && isMobile && (
           <DrawerTrigger asChild>

@@ -88,10 +88,10 @@ export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
 
       <div
         className={cn(
-          "min-h-screen border-r bg-background flex-col transition-all duration-300",
+          "bg-background flex-col transition-all duration-300",
           isMobile 
             ? "fixed inset-y-0 left-0 z-40 transform transition-transform duration-300 ease-in-out" 
-            : "hidden md:flex",
+            : "flex h-full",
           isMobile && !open && "-translate-x-full",
           isMobile && open && "translate-x-0",
           !isMobile && collapsed ? "w-[80px]" : "w-[280px]",
@@ -117,7 +117,7 @@ export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
         
         <Separator />
 
-        <div className="flex flex-col gap-1 p-4">
+        <div className="flex flex-col gap-1 p-4 flex-grow overflow-y-auto">
           {items.map((item, index) => {
             const isActive = location.pathname === item.path;
 
@@ -145,3 +145,4 @@ export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
     </>
   );
 }
+
