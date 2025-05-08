@@ -14,11 +14,11 @@ const MainLayout = () => {
       <Header className="fixed top-0 left-0 right-0 z-50" />
       <div className="flex flex-1 pt-16 overflow-hidden">
         {!isMobile && (
-          <aside className="w-64 flex-shrink-0 fixed left-0 top-16 bottom-0">
+          <aside className="w-64 flex-shrink-0 fixed left-0 top-16 bottom-0 z-30">
             <NewSidebar />
           </aside>
         )}
-        <main className="flex-grow overflow-auto pl-0 md:pl-64">
+        <main className="flex-grow overflow-auto pl-0 md:pl-64 transition-all duration-300">
           <div className="container mx-auto py-6 px-4">
             <Outlet />
           </div>

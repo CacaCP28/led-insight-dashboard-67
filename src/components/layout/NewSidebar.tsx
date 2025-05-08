@@ -119,7 +119,7 @@ export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
           
           <Separator />
 
-          <div className="flex-1 overflow-y-auto no-scrollbar">
+          <div className="flex-1 overflow-hidden no-scrollbar">
             <div className="flex flex-col gap-1 p-4">
               {items.map((item, index) => {
                 const isActive = location.pathname === item.path;
@@ -146,8 +146,8 @@ export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
             </div>
           </div>
           
-          <div className={cn(collapsed && !isMobile ? "w-[80px]" : "w-full")}>
-            <GlobalFooter className={collapsed && !isMobile ? "px-1 py-2" : ""} />
+          <div className="mt-auto">
+            <GlobalFooter className={cn(collapsed && !isMobile ? "px-1 py-2" : "")} />
           </div>
         </div>
       </div>

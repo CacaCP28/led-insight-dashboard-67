@@ -8,7 +8,11 @@ interface GlobalFooterProps {
 
 const GlobalFooter = ({ className }: GlobalFooterProps) => {
   return (
-    <div className={cn("w-full py-3 px-3 bg-black flex items-center justify-center gap-1", className)}>
+    <div className={cn(
+      "w-full py-3 px-3 bg-card border-t border-border flex items-center justify-center gap-1 backdrop-blur-sm",
+      "bg-gradient-to-br from-purple-900/20 to-pink-900/20", 
+      className
+    )}>
       <span className="text-white text-xs whitespace-nowrap">Desenvolvido por:</span>
       <a 
         href="https://www.globalia.com.br" 
