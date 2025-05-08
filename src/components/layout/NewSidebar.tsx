@@ -10,7 +10,9 @@ import {
   Users, 
   BarChart3, 
   HardDrive, 
-  Settings 
+  Settings,
+  ChevronsLeft,
+  ChevronsRight
 } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { useMobile } from "@/hooks/use-mobile";
@@ -64,32 +66,54 @@ const defaultItems: SidebarItem[] = [
 
 export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
   const [open, setOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const isMobile = useMobile();
 
-  const toggle = () => {
+  const toggleSidebar = () => {
     setOpen(!open);
+  };
+
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed);
   };
 
   return (
     <>
       {isMobile && (
-        <Button onClick={toggle} size="icon" variant="outline" className="fixed top-4 left-4 z-50">
+        <Button onClick={toggleSidebar} size="icon" variant="outline" className="fixed top-4 left-4 z-50">
           {open ? <X size={16} /> : <Menu size={16} />}
         </Button>
       )}
 
       <div
         className={cn(
-          "min-h-screen border-r bg-background flex-col",
-          isMobile ? "fixed inset-y-0 left-0 z-40 transform transition-transform duration-300 ease-in-out w-[280px]" : "hidden md:flex w-[280px]",
+          "min-h-screen border-r bg-background flex-col transition-all duration-300",
+          isMobile 
+            ? "fixed inset-y-0 left-0 z-40 transform transition-transform duration-300 ease-in-out" 
+            : "hidden md:flex",
           isMobile && !open && "-translate-x-full",
           isMobile && open && "translate-x-0",
+          !isMobile && collapsed ? "w-[80px]" : "w-[280px]",
           className
         )}
       >
-        {/* Add SidebarLogo at the top */}
-        <SidebarLogo />
+        <div className="flex items-center justify-between p-4">
+          {/* Only show logo when not collapsed or on mobile */}
+          {(!collapsed || isMobile) && <SidebarLogo />}
+          
+          {/* Collapse toggle button - only on desktop */}
+          {!isMobile && (
+            <Button 
+              onClick={toggleCollapse} 
+              size="icon" 
+              variant="ghost" 
+              className="ml-auto"
+            >
+              {collapsed ? <ChevronsRight size={16} /> : <ChevronsLeft size={16} />}
+            </Button>
+          )}
+        </div>
         
         <Separator />
 
@@ -101,13 +125,17 @@ export function NewSidebar({ items = defaultItems, className }: SidebarProps) {
               <Button
                 key={index}
                 variant={isActive ? "secondary" : "ghost"}
-                className={cn("w-full justify-start gap-2 text-left", item.disabled && "opacity-50 pointer-events-none")}
+                className={cn(
+                  "w-full justify-start gap-2 text-left", 
+                  item.disabled && "opacity-50 pointer-events-none",
+                  collapsed && !isMobile && "justify-center px-2"
+                )}
                 disabled={item.disabled}
                 asChild
               >
                 <Link to={item.disabled ? "#" : item.path}>
                   {item.icon}
-                  {item.title}
+                  {(!collapsed || isMobile) && <span>{item.title}</span>}
                 </Link>
               </Button>
             );
