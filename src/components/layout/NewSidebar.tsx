@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { Separator } from "../ui/separator";
-import useMobile from "@/hooks/use-mobile";
+import { useMobile } from "@/hooks/use-mobile";
 import SidebarLogo from "./SidebarLogo";
 
 export interface SidebarItem {
