@@ -1,10 +1,15 @@
 
 import React from "react";
+import { cn } from "@/lib/utils";
 
-const GlobalFooter = () => {
+interface GlobalFooterProps {
+  className?: string;
+}
+
+const GlobalFooter = ({ className }: GlobalFooterProps) => {
   return (
-    <div className="w-full py-4 px-6 bg-black flex items-center justify-center gap-2 mt-auto">
-      <span className="text-white text-sm">Desenvolvido por:</span>
+    <div className={cn("w-full py-3 px-3 bg-black flex items-center justify-center gap-1", className)}>
+      <span className="text-white text-xs whitespace-nowrap">Desenvolvido por:</span>
       <a 
         href="https://www.globalia.com.br" 
         target="_blank" 
@@ -14,7 +19,7 @@ const GlobalFooter = () => {
         <img 
           src="/lovable-uploads/0e5d21d8-c3ec-462e-a524-a02811576610.png" 
           alt="Globalia" 
-          className="h-6" 
+          className="h-5" 
         />
       </a>
     </div>
