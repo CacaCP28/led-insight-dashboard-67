@@ -79,7 +79,7 @@ const AssistantChat = () => {
   };
 
   return (
-    <Card className="p-4 w-full bg-gray-900 border-gray-800">
+    <Card className="p-4 w-full bg-gray-900 border border-purple-500/30 rounded-xl shadow-lg shadow-purple-500/10">
       <div className="flex flex-col h-[320px]">
         <div className="flex justify-between items-center mb-3">
           <div>

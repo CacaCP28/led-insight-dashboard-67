@@ -42,7 +42,7 @@ const formatTime = (minutes: number): string => {
 
 const CriticalSKUs = () => {
   return (
-    <Card className="p-4 w-full bg-gray-900 border-gray-800">
+    <Card className="p-4 w-full bg-gray-900 border border-purple-500/30 rounded-xl shadow-lg shadow-purple-500/10">
       <div className="flex flex-col h-full">
         <div className="mb-3">
           <h3 className="font-bold text-white">SKUs Críticos</h3>
