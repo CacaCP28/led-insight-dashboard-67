@@ -23,19 +23,19 @@ const StatsCard: React.FC<StatsCardProps> = ({
 }) => {
   return (
     <div className={cn(
-      "rounded-xl p-5 flex flex-col animate-fade-in border border-white/5 shadow-md",
-      "bg-gradient-to-br from-led-purple/10 to-led-pink/10 backdrop-blur-sm hover:-translate-y-1 transition-all duration-300",
-      "hover:shadow-purple-500/10 hover:border-purple-500/20",
+      "rounded-xl p-5 flex flex-col animate-fade-in border border-white/10 shadow-xl",
+      "bg-gradient-to-br from-led-purple/20 to-led-pink/20 backdrop-blur-sm hover:-translate-y-1 transition-all duration-300",
+      "hover:shadow-purple-500/30 hover:border-purple-500/30 glow-effect",
       className
     )}>
       <div className="flex items-start justify-between mb-4">
-        <h3 className="text-sm font-medium text-white">{title}</h3>
+        <h3 className="text-sm font-medium text-white text-glow">{title}</h3>
         <div className="led-icon-container bg-white/15 backdrop-blur-md shadow-lg rounded-xl p-2">
           <Icon size={20} className="drop-shadow-md" />
         </div>
       </div>
       <div className="mt-auto">
-        <div className="text-3xl font-bold text-white">{value}</div>
+        <div className="text-3xl font-bold text-white text-glow">{value}</div>
         {trend && (
           <div className="flex items-center mt-2">
             <span
